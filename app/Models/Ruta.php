@@ -12,6 +12,7 @@ class Ruta extends Model
         'km',
         'descripcion',
         'imagen',
+        'lugar_id',
     ];
 
     public function tipos()
@@ -22,5 +23,15 @@ class Ruta extends Model
     public function imagenes()
     {
         return $this->hasMany(ImagenRuta::class);
+    }
+
+    public function lugar()
+    {
+        return $this->belongsTo(Lugar::class);
+    }
+
+    public function valoracion()
+    {
+        return $this->hasMany(Valoracion::class);
     }
 }
