@@ -42,6 +42,6 @@ return new class extends Migration
         Schema::dropIfExists('tipo');
         Schema::dropIfExists('ruta');
         Schema::dropIfExists('imagenes_ruta');
-        Schema::dropIfExists('tipo_tura');
+        Schema::dropIfExists('tipo_ruta');
     }
 };

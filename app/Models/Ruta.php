@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ruta extends Model
 {
+    protected $table = 'ruta';
     protected $fillable = [
         'nombre',
         'km',

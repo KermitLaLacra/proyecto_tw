@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Ruta;
+use App\Models\Tipo;
 
 class RutaController extends Controller
 {
@@ -21,7 +23,7 @@ class RutaController extends Controller
     public function create()
     {
         $tipos = Tipo::all();
-        return view('rutas.create', ['tipos' => $tipos]);
+        return view('create', ['tipos' => $tipos]);
     }
 
     /**
@@ -35,7 +37,7 @@ class RutaController extends Controller
             'descripcion' => 'required',
         ]);
 
-        Ruta::create([
+        $ruta = Ruta::create([
             'nombre' => $request->nombre,
             'km' => $request->km,
             'descripcion' => $request->descripcion,
@@ -80,7 +82,7 @@ class RutaController extends Controller
         $ruta->imagen = $request->imagen;
         $ruta->save();
 
-        $ruta->tipos->sync($request->tipos);
+        $ruta->tipos()->sync($request->tipos);
 
         return redirect('/rutas');
     }
