@@ -38,6 +38,7 @@ class RutaController extends Controller
         ]);
 
         $ruta = Ruta::create([
+            'lugar_id' => $request->lugar_id,
             'nombre' => $request->nombre,
             'km' => $request->km,
             'descripcion' => $request->descripcion,
@@ -53,7 +54,7 @@ class RutaController extends Controller
      */
     public function show(string $id)
     {
-        $ruta = Ruta::with(['tipos', 'imagenes'])->find($id);
+        $ruta = Ruta::with(['tipos', 'imagenes', 'valoraciones'])->find($id);
 
         return view('rutas.show', ['ruta' => $ruta]);
     }
