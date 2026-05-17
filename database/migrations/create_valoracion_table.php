@@ -8,18 +8,18 @@ return new class extends Migration
 {
     public function up(): void 
     {
-        Schema::create('valoracion', function(Blueprint $table){
+        Schema::create('valoraciones', function(Blueprint $table){
             $table->id();
             $table->foreignId('ruta_id')->constrained('ruta');
-            $table->foreignId('users_id')->constrained('users');
-            $table->text('valoracion');
-            $table->integer('puntacion');
+            $table->foreignId('user_id')->constrained('users');
+            $table->text('valoracion')->nullable();
+            $table->integer('puntuacion');
             $table->timestamps();
         });
     }
 
     public function down(): void 
     {
-        Schema::dropIfExists('valoracion');
+        Schema::dropIfExists('valoraciones');
     }
 };

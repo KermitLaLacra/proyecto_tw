@@ -8,11 +8,11 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('ruta', function(Blueprint $table){
+        Schema::create('rutas', function(Blueprint $table){
             $table->id();
             $table->string('nombre');
             $table->double('km', 5, 2);
-            $table->string('descripcion');
+            $table->text('descripcion');
             $table->string('imagen')->nullable();
             $table->foreignId('lugar_id')->constrained('lugar');
             $table->timestamps();
@@ -21,6 +21,6 @@ return new class extends Migration
 
     public function down(): void 
     {
-        Schema::dropIfExists('ruta');
+        Schema::dropIfExists('rutas');
     }
 };
