@@ -15,11 +15,19 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::resource('rutas', RutaController::class);
+
+    Route::resource('tipos', TipoController::class);
+
+    Route::resource('lugares', LugarController::class);
+
+    Route::resource('imagenes', ImagenRutaController::class);
+
+    Route::resource('valoraciones', ValoracionController::class);
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-Route::get('/create', [RutaController::class, 'create']);
 
 require __DIR__.'/auth.php';
