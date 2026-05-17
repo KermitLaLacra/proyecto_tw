@@ -30,7 +30,7 @@ class Ruta extends Model
         return $this->belongsTo(Lugar::class);
     }
 
-    public function valoracion()
+    public function valoraciones()
     {
         return $this->hasMany(Valoracion::class);
     }
