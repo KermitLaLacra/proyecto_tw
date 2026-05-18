@@ -14,7 +14,7 @@ class RutaController extends Controller
     public function index()
     {
         $rutas = Ruta::all();
-        return view('rutas.index', ['rutas' => $rutas]);
+        return view('rutas', ['rutas' => $rutas]);
     }
 
     /**
