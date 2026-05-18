@@ -9,8 +9,8 @@
         @endforeach
     </select>
 
-    @foreach
-        <input type="checkbox" name="tipos[]" value="{{ $tipo->id }}" @checked($ruta->tipos->constains($tipo->id))>
+    @foreach($tipos as $tipo)
+        <input type="checkbox" name="tipos[]" value="{{ $tipo->id }}" @checked($ruta->tipos->contains($tipo->id))>
         {{ $tipo->nombre }}
     @endforeach
 @include('footer')
