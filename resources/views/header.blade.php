@@ -12,7 +12,7 @@ CABEZERA, SE INCLUYE EN TODAS LAS VISTAS
         <ul>
             <li><a href="/">Listado de Rutas</a></li>
             <li><a href="/subir-ruta">Compartir Ruta</a></li>
-            <li><a href="/perfil">Mi Perfil</a></li>
+            <li><a href="/profile">Mi Perfil</a></li>
             <li><a href="/contacto">Contacto</a></li>
         </ul>
     </nav>
