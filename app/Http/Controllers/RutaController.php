@@ -62,13 +62,14 @@ class RutaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        $ruta = Ruta::find($id);
-        $tipos = Tipo::all();
+        public function edit(string $id)
+        {
+            $ruta = Ruta::find($id);
+            $tipos = Tipo::all();
+            $lugares = Lugar::all();
 
-        return view('rutas.edit', ['ruta' => $ruta, 'tipos' => $tipos]);
-    }
+            return view('rutas.edit', ['ruta' => $ruta, 'tipos' => $tipos, 'lugares' => $lugares]);
+        }
 
     /**
      * Update the specified resource in storage.
