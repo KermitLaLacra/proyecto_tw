@@ -6,7 +6,6 @@
         <ul>
             <li><a href="/">Listado de Rutas</a></li>
             <li><a href="/subir-ruta">Compartir Ruta</a></li>
-            <!-- Estos enlaces los implementaremos más adelante -->
             <li><a href="/perfil">Mi Perfil</a></li>
             <li><a href="/contacto">Contacto</a></li>
         </ul>

@@ -3,6 +3,10 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RutaController;
+use App\Http\Controllers\TipoController;
+use App\Http\Controllers\LugarController;
+use App\Http\Controllers\ImagenRutaController;
+use App\Http\Controllers\ValoracionController;
 use App\Models\Ruta;
 use App\Models\Tipo;
 
