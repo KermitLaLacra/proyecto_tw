@@ -1,9 +1,44 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
+/* TUS COLORES PERSONALIZADOS */
+:root {
+    --verde-principal: #2e7d32; /* Puedes cambiar este código HEX por el verde exacto que quieras */
+    --amarillo-detalle: #ffc107;
+}
 
-body {
-    background-color: #b8b8b8;
+/* Fondo verde para Header y Footer */
+.custom-bg-green {
+    background-color: var(--verde-principal);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Una sombrita elegante */
+}
+
+/* Letras blancas normales en el menú */
+.nav-text-white {
+    color: white !important;
+    transition: color 0.3s ease;
+}
+
+/* Efecto Hover: Al pasar el ratón, se ponen amarillas */
+.nav-text-white:hover, 
+.navbar-brand:hover {
+    color: var(--amarillo-detalle) !important;
+}
+
+/* Letras amarillas por defecto (Para el Login/Perfil) */
+.nav-text-yellow {
+    color: var(--amarillo-detalle) !important;
+    transition: color 0.3s ease;
+}
+
+/* Efecto Hover invertido para el Login/Perfil */
+.nav-text-yellow:hover {
+    color: white !important;
+}
+
+/* Ajuste del icono hamburguesa para fondos oscuros */
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.5) !important;
+}
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important;
 }
