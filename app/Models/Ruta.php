@@ -34,4 +34,9 @@ class Ruta extends Model
     {
         return $this->hasMany(Valoracion::class);
     }
+    
+    public function usuariosQueLaSiguen()
+	{
+		return $this->belongsToMany(User::class, 'favoritos', 'ruta_id', 'user_id');
+	}
 }
