@@ -2,7 +2,6 @@
 
 VISTA DEL LISTADO DE LAS RUTAS
 
-IGNORAR  EL ESTILO ESCRITO ANTES DEL HEADER, SOLO ES DE PRUEBA
 
 -->
 
@@ -10,18 +9,7 @@ IGNORAR  EL ESTILO ESCRITO ANTES DEL HEADER, SOLO ES DE PRUEBA
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ruta del Alioli - Listado de Rutas</title>
-    <style>
-        /* Estilos básicos para la estructura */
-        body { font-family: sans-serif; margin: 0; padding: 0; background-color: #f4f4f9; display: flex; flex-direction: column; min-height: 100vh; }
-        header { background: #2e7d32; color: white; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
-        header a { color: white; text-decoration: none; margin-left: 15px; }
-        main { padding: 2rem; flex: 1; }
-        footer { background: #333; color: white; text-align: center; padding: 1rem; }
-        .ruta-card { background: white; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-    </style>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
 
