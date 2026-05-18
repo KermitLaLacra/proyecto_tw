@@ -1,3 +1,9 @@
+<!--
+
+FORMULARIO DE CONTACTO
+
+-->
+
 @extends('layouts.app')
 
 @section('contenido')

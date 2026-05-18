@@ -1,3 +1,9 @@
+<!--
+
+FORMULARIO PARA PUBLICAR UNA NUEVA RUTA
+
+-->
+
 @include('header')
     <h1>Publicar una nueva Ruta</h1>
 

@@ -1,3 +1,9 @@
+<!--
+
+VISTA PARA MOSTRAR LOS DETALLES DE UNA RUTA
+
+-->
+
 @include('header')
     <h1>{{ $ruta->nombre }}</h1>
     

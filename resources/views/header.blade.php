@@ -1,3 +1,9 @@
+<!--
+
+CABEZERA, SE INCLUYE EN TODAS LAS VISTAS
+
+-->
+
 <header>
     <div class="logo">
         <h2>Ruta del Alioli</h2>

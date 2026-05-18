@@ -1,3 +1,10 @@
+<!--
+
+VISTA DEL DASHBOARD, CREADA POR DEFECTO POR LARAVEL, NO TOCAR POR AHORA, A MENOS QUE SEA NECESARIO
+
+-->
+
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
