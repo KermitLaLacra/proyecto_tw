@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Ruta;
 use App\Models\Tipo;
+use App\Models\Lugar;
 
 class RutaController extends Controller
 {
@@ -22,8 +23,8 @@ class RutaController extends Controller
      */
     public function create()
     {
-        $tipos = Tipo::all();
-        return view('create', ['tipos' => $tipos]);
+        $lugares = Lugar::all();
+        return view('create', ['lugares' => $lugares]);
     }
 
     /**
@@ -35,16 +36,26 @@ class RutaController extends Controller
             'nombre' => 'required',
             'km' => 'required|numeric|min:0',
             'descripcion' => 'required',
+            'lugar_id' => 'required|exists:lugar,id',
+            'tipo_ruta' => 'required|in:turismo,senderismo',
+            'dificultad' => 'required|in:muy_facil,facil,intermedio,dificil,muy_dificil',
+            'imagen_principal' => 'nullable|image',
         ]);
 
-        $ruta = Ruta::create([
+        $imagen = null;
+        if ($request->hasFile('imagen_principal')) {
+            $imagen = $request->file('imagen_principal')->store('rutas', 'public');
+        }
+
+        Ruta::create([
             'lugar_id' => $request->lugar_id,
             'nombre' => $request->nombre,
             'km' => $request->km,
             'descripcion' => $request->descripcion,
+            'tipo_ruta' => $request->tipo_ruta,
+            'dificultad' => $request->dificultad,
+            'imagen' => $imagen,
         ]);
-
-        $ruta->tipos()->attach($request->tipos);
 
         return redirect('/rutas');
     }

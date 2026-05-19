@@ -22,13 +22,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    /*
-    Route::middleware('auth')->group(function () {
-		Route::get('/mis-favoritos', [FavoritoController::class, 'index'])->name('favoritos.index');
-		Route::post('/ruta/{ruta}/favorito', [FavoritoController::class, 'toggle'])->name('favoritos.toggle');
-	});*/
 });
 
+Route::middleware('auth')->group(function () {
+		Route::get('/mis-favoritos', [FavoritoController::class, 'index'])->name('favoritos.index');
+		Route::post('/ruta/{ruta}/favorito', [FavoritoController::class, 'toggle'])->name('favoritos.toggle');
+});
+
+Route::get('/rutas', [RutaController::class, 'index'])->name('rutas.index');
+Route::get('/rutas/{ruta}', [RutaController::class, 'show'])->name('rutas.show');
 Route::resource('rutas', RutaController::class);
 
 Route::resource('tipos', TipoController::class);
