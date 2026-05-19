@@ -12,6 +12,8 @@ class Ruta extends Model
         'km',
         'descripcion',
         'imagen',
+        'tipo_ruta',
+        'dificultad',
         'lugar_id',
     ];
 
