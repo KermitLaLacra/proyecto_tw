@@ -32,7 +32,8 @@ class RutaController extends Controller
     public function index()
     {
         $rutas = Ruta::all();
-        return view('rutas', ['rutas' => $rutas]);
+        $lugares = Lugar::all();
+        return view('rutas', ['rutas' => $rutas, 'lugares' => $lugares]);
     }
 
     /**
