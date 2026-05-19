@@ -14,6 +14,8 @@ return new class extends Migration
             $table->double('km', 5, 2);
             $table->text('descripcion');
             $table->string('imagen')->nullable();
+            $table->enum('tipo_ruta', ['turismo', 'senderismo']);
+            $table->enum('dificultad', ['muy_facil', 'facil', 'intermedio', 'dificil', 'muy_dificil']);
             $table->foreignId('lugar_id')->constrained('lugar');
             $table->timestamps();
         });
