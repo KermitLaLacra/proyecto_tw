@@ -8,7 +8,24 @@ use App\Models\Tipo;
 use App\Models\Lugar;
 
 class RutaController extends Controller
-{
+{/*
+    public function welcome(Request $request)
+    {
+        $tipos = Tipo::all();
+        $lugares = Lugar::all();
+        $rutas = Ruta::query();
+
+        if($request->tipos) {
+            $rutas->whereHas('tipos', function($query) use ($request) {
+                $query->where('id', $request->tipos);
+            });
+        }
+
+        if($request->lugar_id) {
+            $rutas->where('lugar_id', $request->lugar);
+        }
+        return view('welcome');
+    }*/
     /**
      * Display a listing of the resource.
      */
