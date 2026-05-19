@@ -29,6 +29,8 @@ Route::middleware('auth')->group(function () {
 	});*/
 });
 
+Route::get('/rutas', [RutaController::class, 'index'])->name('rutas.index');
+Route::get('/rutas/{ruta}', [RutaController::class, 'show'])->name('rutas.show');
 Route::resource('rutas', RutaController::class);
 
 Route::resource('tipos', TipoController::class);
