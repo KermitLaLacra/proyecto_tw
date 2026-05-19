@@ -42,3 +42,217 @@
 .navbar-toggler-icon {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important;
 }
+
+/* ========== ESTILOS PARA LA VISTA DE RUTAS ========== */
+
+/* Barra de búsqueda principal */
+.card-search-bar {
+    border: none;
+    border-bottom: 3px solid var(--verde-principal);
+    box-shadow: 0 2px 8px rgba(46, 125, 50, 0.15);
+}
+
+.search-input {
+    border: none !important;
+    font-size: 1.1rem;
+    padding: 15px 20px !important;
+    font-weight: 500;
+}
+
+.search-input::placeholder {
+    color: #999;
+}
+
+.search-input:focus {
+    box-shadow: none !important;
+    border: none !important;
+    background-color: #f8f9fa;
+}
+
+/* Tarjeta de filtros */
+.card-filters {
+    border: 1px solid #e0e0e0;
+    border-top: 4px solid var(--verde-principal);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    background-color: #fafafa;
+}
+
+.card-filters .form-label {
+    font-weight: 600;
+    color: var(--verde-principal);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-filters .form-select,
+.card-filters .form-control {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.card-filters .form-select:focus,
+.card-filters .form-control:focus {
+    border-color: var(--verde-principal);
+    box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.25);
+}
+
+/* Botones de filtro */
+.btn-filter {
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+.btn-success.btn-filter {
+    background-color: var(--verde-principal);
+    border-color: var(--verde-principal);
+}
+
+.btn-success.btn-filter:hover {
+    background-color: #1b5e20;
+    border-color: #1b5e20;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+}
+
+.btn-outline-secondary.btn-filter {
+    color: var(--verde-principal);
+    border-color: var(--verde-principal);
+}
+
+.btn-outline-secondary.btn-filter:hover {
+    background-color: var(--verde-principal);
+    border-color: var(--verde-principal);
+    color: white;
+}
+
+/* ========== TARJETAS DE RUTAS ========== */
+
+.card {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 24px rgba(46, 125, 50, 0.2);
+}
+
+.card-img-top {
+    border-radius: 0;
+}
+
+.card-title {
+    color: var(--verde-principal);
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+.card-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.card-text strong {
+    color: var(--verde-principal);
+}
+
+.badge {
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.5rem 0.75rem;
+}
+
+/* BADGES DE TIPO DE RUTA */
+.badge-tipo-turismo {
+    background-color: #d7ccc8;
+    color: #5d4037;
+}
+
+.badge-tipo-senderismo {
+    background-color: #c8e6c9;
+    color: #1b5e20;
+}
+
+/* BADGES DE DIFICULTAD */
+.badge-dificultad-muy-facil {
+    background-color: #a5d6a7;
+    color: #1b5e20;
+}
+
+.badge-dificultad-facil {
+    background-color: #81c784;
+    color: #1b5e20;
+}
+
+.badge-dificultad-intermedio {
+    background-color: #ffd54f;
+    color: #f57f17;
+}
+
+.badge-dificultad-dificil {
+    background-color: #ffb74d;
+    color: #e65100;
+}
+
+.badge-dificultad-muy-dificil {
+    background-color: #ef5350;
+    color: #fff;
+}
+
+.card-footer {
+    border-top: 1px solid #e0e0e0;
+}
+
+.card-footer .btn-primary {
+    background-color: var(--verde-principal);
+    border-color: var(--verde-principal);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.card-footer .btn-primary:hover {
+    background-color: #1b5e20;
+    border-color: #1b5e20;
+}
+
+/* ========== RESPONSIVE ========== */
+
+@media (max-width: 768px) {
+    .card-filters {
+        padding: 1rem 0;
+    }
+    
+    .btn-filter {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    .card-title {
+        font-size: 1.1rem;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .search-input {
+        font-size: 1rem !important;
+        padding: 12px 15px !important;
+    }
+    
+    .card-filters .form-label {
+        font-size: 0.85rem;
+    }
+    
+    .card-text {
+        font-size: 0.9rem;
+    }
+}
