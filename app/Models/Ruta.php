@@ -17,11 +17,6 @@ class Ruta extends Model
         'lugar_id',
     ];
 
-    public function tipos()
-    {
-        return $this->belongsToMany(Tipo::class, 'tipo_ruta');
-    }
-
     public function imagenes()
     {
         return $this->hasMany(ImagenRuta::class);

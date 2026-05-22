@@ -6,11 +6,11 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up(): void 
+    public function up(): void
     {
         Schema::create('valoraciones', function(Blueprint $table){
             $table->id();
-            $table->foreignId('ruta_id')->constrained('ruta');
+            $table->foreignId('ruta_id')->constrained('rutas');
             $table->foreignId('user_id')->constrained('users');
             $table->text('valoracion')->nullable();
             $table->integer('puntuacion');

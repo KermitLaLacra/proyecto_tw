@@ -83,9 +83,9 @@ class RutaController extends Controller
      */
     public function show(string $id)
     {
-        $ruta = Ruta::with(['tipos', 'imagenes', 'valoraciones'])->find($id);
+        $ruta = Ruta::with(['imagenes', 'valoraciones'])->find($id);
 
-        return view('rutas.show', ['ruta' => $ruta]);
+        return view('ruta', ['ruta' => $ruta]);
     }
 
     /**

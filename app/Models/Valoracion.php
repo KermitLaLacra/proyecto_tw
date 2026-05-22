@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Valoracion extends Models
+class Valoracion extends Model
 {
-    protected $table = 'valoracion';
+    protected $table = 'valoraciones';
     protected $fillable = [
         'ruta_id',
-        'users_id',
+        'user_id',
         'valoracion',
         'puntuacion',
     ];
@@ -21,6 +21,6 @@ class Valoracion extends Models
 
     public function users()
     {
-        return $this->belongsTo(Users::class);
+        return $this->belongsTo(User::class);
     }
 }

@@ -6,11 +6,11 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up(): void 
+    public function up(): void
     {
         Schema::create('imagenes', function(Blueprint $table){
             $table->id();
-            $table->foreignId('ruta_id')->constrained('ruta');
+            $table->foreignId('ruta_id')->constrained('rutas');
             $table->string('archivo');
             $table->integer('orden')->default(0);
             $table->timestamps();
