@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->double('km', 5, 2);
+            $table->integer('desnivel')->default(0);
             $table->text('descripcion');
             $table->string('imagen')->nullable();
             $table->enum('tipo_ruta', ['turismo', 'senderismo']);

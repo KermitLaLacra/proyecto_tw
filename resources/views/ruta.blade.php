@@ -67,6 +67,11 @@
                 </div>
                 <div class="detalle-separador"></div>
                 <div class="detalle-item">
+                    <span class="detalle-label">⛰️ Desnivel</span>
+                    <span class="detalle-valor">{{ $ruta->desnivel }} m</span>
+                </div>
+                <div class="detalle-separador"></div>
+                <div class="detalle-item">
                     <span class="detalle-label">🧭 Tipo</span>
                     <span class="detalle-valor">
                         <span class="badge badge-tipo-{{ $ruta->tipo_ruta }}">

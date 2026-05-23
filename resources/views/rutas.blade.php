@@ -147,6 +147,11 @@
                             <strong>📏 Distancia:</strong> {{ number_format($ruta->km, 2) }} km
                         </p>
 
+                        <!-- Desnivel -->
+                        <p class="card-text">
+                            <strong>⛰️ Desnivel:</strong> {{ $ruta->desnivel }} m
+                        </p>
+
                         <!-- Dificultad -->
                         <p class="card-text">
                             <strong>⛰️ Dificultad:</strong> 

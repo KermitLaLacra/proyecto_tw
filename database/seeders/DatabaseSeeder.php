@@ -38,6 +38,7 @@ class DatabaseSeeder extends Seeder
         Ruta::create([
             'nombre' => 'Ruta de las Alpujarras',
             'km' => 25.50,
+            'desnivel' => 850,
             'descripcion' => 'Una hermosa ruta que recorre los pueblos blancos de las Alpujarras con vistas espectaculares de las montañas.',
             'imagen' => null,
             'tipo_ruta' => 'turismo',
@@ -48,6 +49,7 @@ class DatabaseSeeder extends Seeder
         Ruta::create([
             'nombre' => 'Senderismo Sierra Nevada',
             'km' => 15.75,
+            'desnivel' => 1200,
             'descripcion' => 'Ruta de senderismo por los picos de Sierra Nevada, ideal para amantes de la naturaleza y el trekking.',
             'imagen' => null,
             'tipo_ruta' => 'senderismo',
@@ -58,6 +60,7 @@ class DatabaseSeeder extends Seeder
         Ruta::create([
             'nombre' => 'Paseo por la Costa Tropical',
             'km' => 8.30,
+            'desnivel' => 120,
             'descripcion' => 'Agradable paseo por la costa con playas y calas escondidas. Perfecto para familias.',
             'imagen' => null,
             'tipo_ruta' => 'turismo',
