@@ -446,8 +446,129 @@
         padding: 1.5rem;
     }
 
-    .descripcion-titulo,
-    .valoraciones-titulo {
-        font-size: 1.2rem;
+}
+
+/* ========== ESTILOS PARA LA VISTA DE CREAR RUTA ========== */
+
+.card-create {
+    border-radius: 8px;
+    border-left: 4px solid var(--verde-principal);
+    box-shadow: 0 4px 12px rgba(46, 125, 50, 0.1) !important;
+    background-color: #fafafa;
+}
+
+.titulo-create {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--verde-principal);
+    text-align: center;
+    margin-bottom: 2rem !important;
+}
+
+.label-create {
+    font-weight: 600;
+    color: var(--verde-principal);
+    font-size: 0.95rem;
+    margin-bottom: 0.6rem;
+}
+
+.input-create {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.input-create:focus {
+    border-color: var(--verde-principal);
+    box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.25);
+    background-color: #fff;
+}
+
+.input-create::placeholder {
+    color: #999;
+}
+
+.divisor-create {
+    border: none;
+    border-top: 2px solid var(--verde-principal);
+    margin: 2rem 0;
+    opacity: 0.3;
+}
+
+.btn-create {
+    font-weight: 600;
+    border-radius: 4px;
+    padding: 0.75rem 2rem;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.btn-submit {
+    background-color: var(--verde-principal);
+    border-color: var(--verde-principal);
+    color: white;
+}
+
+.btn-submit:hover {
+    background-color: #1b5e20;
+    border-color: #1b5e20;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+    color: white;
+}
+
+.btn-cancel {
+    background-color: transparent;
+    border: 2px solid var(--verde-principal);
+    color: var(--verde-principal);
+}
+
+.btn-cancel:hover {
+    background-color: var(--verde-principal);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* ========== RESPONSIVE CREATE ========== */
+
+@media (max-width: 768px) {
+    .titulo-create {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem !important;
+    }
+
+    .card-create {
+        padding: 0 !important;
+    }
+
+    .card-body {
+        padding: 1.5rem !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .titulo-create {
+        font-size: 1.3rem;
+    }
+
+    .label-create {
+        font-size: 0.9rem;
+    }
+
+    .input-create {
+        font-size: 0.9rem;
+        padding: 0.6rem 0.8rem;
+    }
+
+    .btn-create {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.9rem;
+        width: 100%;
+    }
+
+    .d-flex.gap-2 {
+        flex-direction: column;
     }
 }
