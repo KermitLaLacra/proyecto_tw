@@ -53,7 +53,12 @@
     <!-- Nombre de la ruta -->
     <div class="row mb-4">
         <div class="col-12">
-            <h1 class="ruta-titulo">{{ $ruta->nombre }}</h1>
+            <h1 class="ruta-titulo">
+                {{ $ruta->nombre }}
+                @if($ruta->es_oficial)
+                    <span class="badge bg-success text-warning" style="font-size: 0.75rem; vertical-align: middle;">Oficial</span>
+                @endif
+            </h1>
         </div>
     </div>
 

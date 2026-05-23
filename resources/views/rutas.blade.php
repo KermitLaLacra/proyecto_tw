@@ -127,7 +127,12 @@
 
                     <div class="card-body">
                         <!-- Nombre de la ruta -->
-                        <h4 class="card-title">{{ $ruta->nombre }}</h4>
+                        <h4 class="card-title">
+                            {{ $ruta->nombre }}
+                            @if($ruta->es_oficial)
+                                <span class="badge bg-success text-warning" style="font-size: 0.75rem; vertical-align: middle;">Oficial</span>
+                            @endif
+                        </h4>
 
                         <!-- Ubicación -->
                         <p class="card-text">
