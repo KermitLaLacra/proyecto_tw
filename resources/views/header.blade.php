@@ -8,7 +8,7 @@ CABEZERA, SE INCLUYE EN TODAS LAS VISTAS
     <nav class="navbar navbar-expand-lg custom-bg-green py-3">
         <div class="container-fluid px-4">
             
-            <a class="navbar-brand text-white fw-bold fs-3" href="/">Ruta del Alioli</a>
+            <a class="navbar-brand text-white fw-bold fs-3" href="/rutas">Ruta del Alioli</a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -18,13 +18,10 @@ CABEZERA, SE INCLUYE EN TODAS LAS VISTAS
                 
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link nav-text-white" href="/">Listado de Rutas</a>
+                        <a class="nav-link nav-text-white" href="/rutas">Listado de Rutas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-text-white" href="/subir-ruta">Compartir Ruta</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-text-white" href="/contacto">Contacto</a>
+                        <a class="nav-link nav-text-white" href="/rutas/create">Compartir Ruta</a>
                     </li>
                 </ul>
 

@@ -53,6 +53,7 @@ class RutaController extends Controller
         $request->validate([
             'nombre' => 'required',
             'km' => 'required|numeric|min:0',
+            'desnivel' => 'required|integer|min:0',
             'descripcion' => 'required',
             'lugar_id' => 'required|exists:lugar,id',
             'tipo_ruta' => 'required|in:turismo,senderismo',
@@ -69,6 +70,7 @@ class RutaController extends Controller
             'lugar_id' => $request->lugar_id,
             'nombre' => $request->nombre,
             'km' => $request->km,
+            'desnivel' => $request->desnivel,
             'descripcion' => $request->descripcion,
             'tipo_ruta' => $request->tipo_ruta,
             'dificultad' => $request->dificultad,

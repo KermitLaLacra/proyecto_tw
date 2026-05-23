@@ -25,21 +25,18 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-		Route::get('/mis-favoritos', [FavoritoController::class, 'index'])->name('favoritos.index');
-		Route::post('/ruta/{ruta}/favorito', [FavoritoController::class, 'toggle'])->name('favoritos.toggle');
+	// Route::get('/mis-favoritos', [FavoritoController::class, 'index'])->name('favoritos.index');
+	// Route::post('/ruta/{ruta}/favorito', [FavoritoController::class, 'toggle'])->name('favoritos.toggle');
 });
 
+Route::resource('rutas', RutaController::class);
 Route::get('/rutas', [RutaController::class, 'index'])->name('rutas.index');
 Route::get('/rutas/{ruta}', [RutaController::class, 'show'])->name('rutas.show');
-Route::resource('rutas', RutaController::class);
 
-Route::resource('tipos', TipoController::class);
-
-Route::resource('lugares', LugarController::class);
-
-Route::resource('imagenes', ImagenRutaController::class);
-
-Route::resource('valoraciones', ValoracionController::class);
+// Route::resource('tipos', TipoController::class);
+// Route::resource('lugares', LugarController::class);
+// Route::resource('imagenes', ImagenRutaController::class);
+// Route::resource('valoraciones', ValoracionController::class);
 
 
 require __DIR__.'/auth.php';

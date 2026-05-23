@@ -27,6 +27,11 @@ FORMULARIO PARA PUBLICAR UNA NUEVA RUTA
                         </div>
 
                         <div class="mb-3">
+                            <label class="form-label">Desnivel (en metros)</label>
+                            <input type="number" name="desnivel" class="form-control" min="0" required>
+                        </div>
+
+                        <div class="mb-3">
                             <label class="form-label">Descripción</label>
                             <textarea name="descripcion" rows="4" class="form-control" required></textarea>
                         </div>
