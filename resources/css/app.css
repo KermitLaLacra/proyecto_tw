@@ -572,3 +572,14 @@
         flex-direction: column;
     }
 }
+
+
+/* ========== ESTILOS DE ENLACES DE AUTH ========== */
+.auth-link {
+    color: var(--verde-principal) !important;
+    transition: color 0.3s ease;
+}
+
+.auth-link:hover {
+    color: var(--amarillo-detalle) !important;
+}
