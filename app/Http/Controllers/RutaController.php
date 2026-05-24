@@ -76,15 +76,9 @@ class RutaController extends Controller
 
         $rutas = $query->get();
 
-        // Obtener valores máximos para los sliders
-        $km_max = Ruta::max('km') ?? 100;
-        $desnivel_max = Ruta::max('desnivel') ?? 1000;
-
         return view('rutas', [
             'rutas' => $rutas,
-            'lugares' => $lugares,
-            'km_max' => $km_max,
-            'desnivel_max' => $desnivel_max
+            'lugares' => $lugares
         ]);
     }
 
