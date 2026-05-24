@@ -78,7 +78,9 @@ class RutaController extends Controller
 
         return view('rutas', [
             'rutas' => $rutas,
-            'lugares' => $lugares
+            'lugares' => $lugares,
+            'km_max' => Ruta::max('km') ?? 100,
+            'desnivel_max' => Ruta::max('desnivel') ?? 1000
         ]);
     }
 

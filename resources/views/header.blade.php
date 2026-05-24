@@ -8,7 +8,7 @@ CABEZERA, SE INCLUYE EN TODAS LAS VISTAS
     <nav class="navbar navbar-expand-lg custom-bg-green py-3">
         <div class="container-fluid px-4">
             
-            <a class="navbar-brand text-white fw-bold fs-3" href="/rutas">Ruta del Alioli</a>
+            <a class="navbar-brand text-white fw-bold fs-3" href="/">Ruta del Alioli</a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
