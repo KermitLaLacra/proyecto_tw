@@ -9,9 +9,17 @@ use App\Http\Controllers\ImagenRutaController;
 use App\Http\Controllers\ValoracionController;
 use App\Models\Ruta;
 use App\Models\Tipo;
+use App\Models\Lugar;
 
 Route::get('/', function () {
-    return view('welcome');
+    $lugares = Lugar::all();
+    $km_max = Ruta::max('km') ?? 100;
+    $desnivel_max = Ruta::max('desnivel') ?? 1000;
+    return view('welcome', [
+        'lugares' => $lugares,
+        'km_max' => $km_max,
+        'desnivel_max' => $desnivel_max
+    ]);
 });
 
 Route::get('/dashboard', function () {

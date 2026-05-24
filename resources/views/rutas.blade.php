@@ -69,7 +69,7 @@
 
                                 <!-- Filtro por Longitud mínima -->
                                 <div class="col-12 col-sm-6 col-md-2 col-lg-2">
-                                    <label for="km_min" class="form-label">Km mín.</label>
+                                    <label for="km_min" class="form-label">Distancia mín.</label>
                                     <input 
                                         type="number" 
                                         class="form-control" 
@@ -83,19 +83,49 @@
 
                                 <!-- Filtro por Longitud máxima -->
                                 <div class="col-12 col-sm-6 col-md-2 col-lg-2">
-                                    <label for="km_max" class="form-label">Km máx.</label>
+                                    <label for="km_max" class="form-label">Distancia máx.</label>
                                     <input 
                                         type="number" 
                                         class="form-control" 
                                         id="km_max" 
                                         name="km_max" 
-                                        placeholder="999"
+                                        placeholder="{{ number_format($km_max, 1) }}"
                                         step="0.1"
+                                        max="{{ $km_max }}"
                                         value="{{ request('km_max') }}"
                                     >
                                 </div>
 
-                                <!-- Botones de acción -->
+                                <!-- Filtro por Desnivel mínimo -->
+                                <div class="col-12 col-sm-6 col-md-2 col-lg-2">
+                                    <label for="desnivel_min" class="form-label">Desnivel mín.</label>
+                                    <input 
+                                        type="number" 
+                                        class="form-control" 
+                                        id="desnivel_min" 
+                                        name="desnivel_min" 
+                                        placeholder="0"
+                                        step="1"
+                                        min="0"
+                                        max="{{ $desnivel_max }}"
+                                        value="{{ request('desnivel_min') }}"
+                                    >
+                                </div>
+
+                                <!-- Filtro por Desnivel máximo -->
+                                <div class="col-12 col-sm-6 col-md-2 col-lg-2">
+                                    <label for="desnivel_max" class="form-label">Desnivel máx.</label>
+                                    <input 
+                                        type="number" 
+                                        class="form-control" 
+                                        id="desnivel_max" 
+                                        name="desnivel_max" 
+                                        placeholder="{{ number_format($desnivel_max, 0) }}"
+                                        step="1"
+                                        max="{{ $desnivel_max }}"
+                                        value="{{ request('desnivel_max') }}"
+                                    >
+                                </div>
                                 <div class="col-12 col-lg-2 d-flex gap-2">
                                     <button type="submit" class="btn btn-success flex-grow-1 btn-filter">
                                         🔍 Buscar
@@ -195,4 +225,5 @@
         @endforelse
     </div>
 </div>
+
 @endsection

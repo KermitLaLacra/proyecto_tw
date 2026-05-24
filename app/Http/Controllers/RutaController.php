@@ -29,11 +29,63 @@ class RutaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $rutas = Ruta::all();
+        $query = Ruta::query();
         $lugares = Lugar::all();
-        return view('rutas', ['rutas' => $rutas, 'lugares' => $lugares]);
+
+        // Filtro por nombre
+        if ($request->filled('nombre')) {
+            $query->where('nombre', 'like', '%' . $request->nombre . '%');
+        }
+
+        // Filtro por lugar
+        if ($request->filled('lugar')) {
+            $query->where('lugar_id', $request->lugar);
+        }
+
+        // Filtro por tipo
+        if ($request->filled('tipo')) {
+            $query->where('tipo_ruta', $request->tipo);
+        }
+
+        // Filtro por dificultad
+        if ($request->filled('dificultad')) {
+            $query->where('dificultad', $request->dificultad);
+        }
+
+        // Filtro por km mínimo
+        if ($request->filled('km_min')) {
+            $query->where('km', '>=', $request->km_min);
+        }
+
+        // Filtro por km máximo
+        if ($request->filled('km_max')) {
+            $query->where('km', '<=', $request->km_max);
+        }
+
+        // Filtro por desnivel mínimo
+        if ($request->filled('desnivel_min')) {
+            $query->where('desnivel', '>=', $request->desnivel_min);
+        }
+
+        // Filtro por desnivel máximo
+        if ($request->filled('desnivel_max')) {
+            $query->where('desnivel', '<=', $request->desnivel_max);
+        }
+
+        $rutas = $query->get();
+
+        // Obtener valores máximos para los sliders
+        $km_max = Ruta::max('km') ?? 100;
+        $desnivel_max = Ruta::max('desnivel') ?? 1000;
+
+        return view('rutas', [
+            'rutas' => $rutas,
+            'lugares' => $lugares,
+            'km_max' => $km_max,
+            'desnivel_max' => $desnivel_max
+        ]);
     }
 
     /**
