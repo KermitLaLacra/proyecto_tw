@@ -1,9 +1,3 @@
-<!--
-
-CABEZERA, SE INCLUYE EN TODAS LAS VISTAS
-
--->
-
 <header>
     <nav class="navbar navbar-expand-lg custom-bg-green py-3">
         <div class="container-fluid px-4">
@@ -21,7 +15,9 @@ CABEZERA, SE INCLUYE EN TODAS LAS VISTAS
                         <a class="nav-link nav-text-white" href="/rutas">Listado de Rutas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nav-text-white" href="/rutas/create">Compartir Ruta</a>
+                        <a class="nav-link nav-text-white" href="{{ auth()->check() ? '/rutas/create' : '/login' }}">
+                            Compartir Ruta
+                        </a>
                     </li>
                 </ul>
 
