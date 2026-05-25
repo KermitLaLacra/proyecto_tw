@@ -15,6 +15,9 @@ class Ruta extends Model
         'tipo_ruta',
         'dificultad',
         'lugar_id',
+        'user_id',
+        'es_oficial',
+        'es_validada',
     ];
 
     public function imagenes()

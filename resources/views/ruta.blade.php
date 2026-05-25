@@ -2,17 +2,37 @@
 
 @section('contenido')
 <div class="container mt-5 ruta-detalle">
+    @if(session('status'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('status') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     <!-- Sección de imágenes -->
     <div class="row mb-4">
         <div class="col-12">
             <div class="ruta-images-carousel">
-                @if($ruta->imagenes && $ruta->imagenes->count() > 0)
+                @php
+                    $imagenesCarrusel = collect();
+                    if ($ruta->imagen) {
+                        $imagenesCarrusel->push($ruta->imagen);
+                    }
+                    if ($ruta->imagenes && $ruta->imagenes->count() > 0) {
+                        foreach ($ruta->imagenes as $imagen) {
+                            $imagenesCarrusel->push($imagen->archivo);
+                        }
+                    }
+                    $imagenesCarrusel = $imagenesCarrusel->unique()->values();
+                @endphp
+
+                @if($imagenesCarrusel->count() > 0)
                     <div id="rutaCarousel" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
-                            @foreach($ruta->imagenes as $index => $imagen)
+                            @foreach($imagenesCarrusel as $index => $archivo)
                                 <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                                     <img
-                                        src="{{ asset('storage/' . $imagen->ruta) }}"
+                                        src="{{ asset('storage/' . $archivo) }}"
                                         class="d-block w-100"
                                         alt="Imagen de {{ $ruta->nombre }}"
                                         style="height: 500px; object-fit: cover;"
@@ -20,7 +40,7 @@
                                 </div>
                             @endforeach
                         </div>
-                        @if($ruta->imagenes->count() > 1)
+                        @if($imagenesCarrusel->count() > 1)
                             <button class="carousel-control-prev" type="button" data-bs-target="#rutaCarousel" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Anterior</span>
@@ -57,6 +77,15 @@
                 {{ $ruta->nombre }}
                 @if($ruta->es_oficial)
                     <span class="badge bg-success text-warning" style="font-size: 0.75rem; vertical-align: middle;">Oficial</span>
+                @endif
+
+                @if(auth()->check() && auth()->user()->hasRole('administrador'))
+                    <form method="POST" action="{{ route('rutas.oficial.toggle', $ruta->id) }}" class="d-inline ms-2">
+                        @csrf
+                        <button type="submit" class="btn btn-sm btn-outline-light text-dark" style="border-radius: 999px; padding: .35rem .75rem;">
+                            {{ $ruta->es_oficial ? 'Quitar oficial' : 'Marcar oficial' }}
+                        </button>
+                    </form>
                 @endif
 
                 {{-- Estrella de favorito al lado de la etiqueta Oficial --}}

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Ruta;
 use App\Models\Tipo;
 use App\Models\Lugar;
@@ -107,6 +108,8 @@ class RutaController extends Controller
             'tipo_ruta' => 'required|in:turismo,senderismo',
             'dificultad' => 'required|in:muy_facil,facil,intermedio,dificil,muy_dificil',
             'imagen_principal' => 'nullable|image',
+            'imagenes' => 'nullable|array',
+            'imagenes.*' => 'image',
         ]);
 
         $imagen = null;
@@ -114,7 +117,7 @@ class RutaController extends Controller
             $imagen = $request->file('imagen_principal')->store('rutas', 'public');
         }
 
-        Ruta::create([
+        $ruta = Ruta::create([
             'user_id' => auth()->id(),
             'lugar_id' => $request->lugar_id,
             'nombre' => $request->nombre,
@@ -124,7 +127,18 @@ class RutaController extends Controller
             'tipo_ruta' => $request->tipo_ruta,
             'dificultad' => $request->dificultad,
             'imagen' => $imagen,
+            'es_oficial' => false,
         ]);
+
+        if ($request->hasFile('imagenes')) {
+            foreach ($request->file('imagenes') as $index => $imagenAdicional) {
+                $archivo = $imagenAdicional->store('rutas', 'public');
+                $ruta->imagenes()->create([
+                    'archivo' => $archivo,
+                    'orden' => $index,
+                ]);
+            }
+        }
 
         return redirect('/rutas');
     }
@@ -179,5 +193,17 @@ class RutaController extends Controller
         $ruta->delete();
 
         return redirect('/rutas');
+    }
+
+    public function toggleOficial(Ruta $ruta)
+    {
+        if (! auth()->check() || ! auth()->user()->hasRole('administrador')) {
+            abort(403);
+        }
+
+        $ruta->es_oficial = ! $ruta->es_oficial;
+        $ruta->save();
+
+        return back()->with('status', $ruta->es_oficial ? 'Ruta marcada como oficial.' : 'Ruta desmarcada como oficial.');
     }
 }

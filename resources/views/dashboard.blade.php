@@ -70,7 +70,12 @@
                                 style="height: 200px; object-fit: cover;"
                             >
                             <div class="card-body">
-                                <h4 class="card-title text-success fw-bold">{{ $ruta->nombre }}</h4>
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <h4 class="card-title text-success fw-bold mb-0">{{ $ruta->nombre }}</h4>
+                                    @if($ruta->es_oficial)
+                                        <span class="badge bg-success">Oficial</span>
+                                    @endif
+                                </div>
                                 <p class="card-text mb-1">
                                     <strong>📏 Distancia:</strong> {{ number_format($ruta->km, 2) }} km
                                 </p>
@@ -89,14 +94,32 @@
                             </div>
                             <div class="card-footer bg-white border-0 pb-4">
                                 <div class="d-flex gap-2">
-                                    <a href="{{ route('rutas.show', $ruta->id) }}" class="btn btn-outline-secondary w-100 fw-bold">Ver</a>
-                                    <a href="{{ route('rutas.edit', $ruta->id) }}" class="btn btn-create w-100 text-white" style="background-color: var(--verde-principal);">Editar</a>
+                                    <a href="{{ route('rutas.show', $ruta->id) }}" class="btn btn-outline-secondary w-100 fw-bold">
+                                        Ver
+                                    </a>
+                                    <a href="{{ route('rutas.edit', $ruta->id) }}" class="btn btn-create w-100 text-white" style="background-color: var(--verde-principal);">
+                                        Editar
+                                    </a>
                                 </div>
+
+                                @if(auth()->user()->hasRole('administrador'))
+                                    <div class="mt-2">
+                                        <form action="{{ route('rutas.oficial.toggle', $ruta->id) }}" method="POST" class="m-0">
+                                            @csrf
+                                            <button type="submit" class="btn btn-outline-primary w-100 fw-bold">
+                                                {{ $ruta->es_oficial ? 'Quitar oficial' : 'Marcar oficial' }}
+                                            </button>
+                                        </form>
+                                    </div>
+                                @endif
+                                
                                 <div class="mt-2">
                                     <form action="{{ route('rutas.destroy', $ruta->id) }}" method="POST" class="m-0" onsubmit="return confirm('¿Estás totalmente seguro de que quieres borrar esta ruta? Esta acción no se puede deshacer.');">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-outline-danger w-100 fw-bold">Eliminar Ruta</button>
+                                        <button type="submit" class="btn btn-outline-danger w-100 fw-bold">
+                                            Eliminar Ruta
+                                        </button>
                                     </form>
                                 </div>
                             </div>
