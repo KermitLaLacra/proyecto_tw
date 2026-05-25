@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class ImagenRutaController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muesrta una lista de todas las imágenes de rutas.
      */
     public function index()
     {
@@ -17,7 +17,7 @@ class ImagenRutaController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Muestra el formulario para crear una nueva imagen de ruta.
      */
     public function create()
     {
@@ -25,7 +25,7 @@ class ImagenRutaController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Almacena una nueva imagen de ruta en la base de datos.
      */
     public function store(Request $request)
     {
@@ -45,7 +45,7 @@ class ImagenRutaController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Muestra los detalles de una imagen de ruta específica.
      */
     public function show(string $id)
     {
@@ -55,7 +55,7 @@ class ImagenRutaController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Muestra el formulario para editar una imagen de ruta existente.
      */
     public function edit(string $id)
     {
@@ -65,7 +65,7 @@ class ImagenRutaController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza una imagen de ruta existente en la base de datos.
      */
     public function update(Request $request, string $id)
     {
@@ -80,7 +80,7 @@ class ImagenRutaController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Elimina una imagen de ruta de la base de datos.
      */
     public function destroy(string $id)
     {

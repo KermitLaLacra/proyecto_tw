@@ -8,7 +8,7 @@ use App\Models\Lugar;
 class LugarController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra una lista de todos los lugares disponibles en la base de datos.
      */
     public function index()
     {
@@ -18,7 +18,7 @@ class LugarController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Muestra el formulario para crear un nuevo lugar.
      */
     public function create()
     {
@@ -28,7 +28,7 @@ class LugarController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Guarda el nuevo lugar en la base de datos.
      */
     public function store(Request $request)
     {
@@ -44,7 +44,7 @@ class LugarController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Muestra los detalles de un lugar específico, incluyendo las rutas asociadas a ese lugar.
      */
     public function show(string $id)
     {
@@ -54,7 +54,7 @@ class LugarController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Muestra el formulario para editar un lugar existente, incluyendo las rutas asociadas a ese lugar para que puedan ser modificadas.
      */
     public function edit(string $id)
     {
@@ -65,7 +65,7 @@ class LugarController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza el lugar en la base de datos.
      */
     public function update(Request $request, string $id)
     {
@@ -79,7 +79,7 @@ class LugarController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Elimina el lugar de la base de datos.
      */
     public function destroy(string $id)
     {

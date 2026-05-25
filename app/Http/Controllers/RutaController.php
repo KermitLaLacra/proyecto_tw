@@ -10,25 +10,8 @@ use App\Models\Lugar;
 
 class RutaController extends Controller
 {/*
-    public function welcome(Request $request)
-    {
-        $tipos = Tipo::all();
-        $lugares = Lugar::all();
-        $rutas = Ruta::query();
-
-        if($request->tipos) {
-            $rutas->whereHas('tipos', function($query) use ($request) {
-                $query->where('id', $request->tipos);
-            });
-        }
-
-        if($request->lugar_id) {
-            $rutas->where('lugar_id', $request->lugar);
-        }
-        return view('welcome');
-    }*/
     /**
-     * Display a listing of the resource.
+     * Muestra una lista de todas las rutas disponibles en la base de datos, con la posibilidad de aplicar filtros.
      */
     public function index(Request $request)
     {
@@ -91,7 +74,7 @@ class RutaController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Muestra el formulario para crear una nueva ruta.
      */
     public function create()
     {
@@ -149,7 +132,7 @@ class RutaController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Muestra los detalles de un lugar específico, incluyendo las rutas asociadas a ese lugar.
      */
     public function show(string $id)
     {
@@ -159,7 +142,7 @@ class RutaController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Muestra el formulario para editar una ruta existente.
      */
         public function edit(string $id)
         {
@@ -171,7 +154,7 @@ class RutaController extends Controller
         }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza el lugar en la base de datos.
      */
     public function update(Request $request, string $id)
     {
@@ -189,7 +172,7 @@ class RutaController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Elimina la ruta de la base de datos, y también elimina las imágenes asociadas a esa ruta tanto de la base de datos como del almacenamiento.
      */
     public function destroy(string $id)
     {

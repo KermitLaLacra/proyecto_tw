@@ -17,8 +17,6 @@ class ContactoController extends Controller
             'mensaje' => 'required|string|max:2000',
         ]);
 
-        // Aquí podrías enviar un email o persistir en BD.
-        // Por ahora devolvemos al formulario con un mensaje de éxito.
         return redirect()->route('contacto')
             ->with('status', 'Mensaje enviado correctamente. Gracias por contactar.');
     }

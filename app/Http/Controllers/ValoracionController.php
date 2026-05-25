@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class ValoracionController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra una lista de todas las valoraciones disponibles en la base de datos.
      */
     public function index()
     {
@@ -17,7 +17,7 @@ class ValoracionController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Muestra el formulario para crear una nueva valoración.
      */
     public function create()
     {
@@ -25,7 +25,7 @@ class ValoracionController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Almacena la nueva valoración en la base de datos.
      */
     public function store(Request $request)
     {
@@ -45,7 +45,7 @@ class ValoracionController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Muestra los detalles de una valoración específica.
      */
     public function show(string $id)
     {
@@ -55,7 +55,7 @@ class ValoracionController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Muestra el formulario para editar una valoración existente.
      */
     public function edit(string $id)
     {
@@ -65,7 +65,7 @@ class ValoracionController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza la valoración especificada en el almacenamiento.
      */
     public function update(Request $request, string $id)
     {
@@ -79,7 +79,7 @@ class ValoracionController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Elimina la valoración de la base de datos.
      */
     public function destroy(string $id)
     {
