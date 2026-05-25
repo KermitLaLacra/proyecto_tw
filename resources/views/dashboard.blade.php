@@ -13,6 +13,15 @@
         </a>
     </div>
 
+    <div class="mb-4">
+        <a href="{{ route('profile.edit') }}" class="btn btn-outline-secondary d-inline-flex align-items-center gap-3 py-3 px-4 shadow-sm" style="border-radius: 12px;">
+            <div class="rounded-circle bg-success text-white d-flex align-items-center justify-content-center" style="width: 44px; height: 44px; font-weight: 700;">
+                {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+            </div>
+            <span class="fw-bold">Editar perfil</span>
+        </a>
+    </div>
+
     <h2 class="h4 mb-4" style="color: var(--verde-principal); font-weight: 700;">Mis Rutas Publicadas</h2>
 
     <div class="row">
