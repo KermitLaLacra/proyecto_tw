@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Ruta;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -50,5 +51,10 @@ class User extends Authenticatable
     public function valoracion()
     {
         return $this->hasMany(Valoracion::class);
+    }
+
+    public function rutasFavoritas()
+    {
+        return $this->belongsToMany(Ruta::class, 'favoritos', 'user_id', 'ruta_id');
     }
 }

@@ -376,7 +376,199 @@
     margin: 0;
 }
 
+/* ========== ESTILOS PARA PERFIL DE USUARIO ========== */
+.user-profile {
+    padding-bottom: 20px;
+}
+
+.perfil-titulo,
+.perfil-subtitulo {
+    color: var(--verde-principal);
+    font-weight: 700;
+}
+
+.perfil-card {
+    border: 1px solid #e9f3ea;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.perfil-card-body {
+    padding: 2rem;
+    background: #ffffff;
+}
+
+.perfil-avatar-card {
+    background: linear-gradient(135deg, rgba(46, 125, 50, 0.1), rgba(255, 255, 255, 0.95));
+    border: 1px solid #e0f0df;
+    border-radius: 16px;
+    padding: 2rem;
+}
+
+.perfil-avatar-circle {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    background-color: var(--verde-principal);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.75rem;
+    font-weight: 700;
+    box-shadow: 0 8px 20px rgba(46, 125, 50, 0.18);
+}
+
+.perfil-nombre {
+    font-size: 1.35rem;
+    font-weight: 700;
+}
+
+.perfil-subtitle {
+    color: #6c757d;
+}
+
+.perfil-detalles dt,
+.perfil-detalles dd {
+    margin-bottom: 0.75rem;
+}
+
+.perfil-detalle-label {
+    color: #6c757d;
+    font-weight: 600;
+}
+
+.perfil-detalle-valor {
+    color: #2e7d32;
+    font-weight: 700;
+}
+
+.btn-profile-edit {
+    border-color: var(--verde-principal);
+    color: var(--verde-principal);
+}
+
+.btn-profile-edit:hover {
+    background-color: var(--verde-principal);
+    color: white;
+}
+
+.perfil-empty-alert {
+    border-left: 4px solid var(--verde-principal);
+    background-color: #f3faf4;
+}
+
+.perfil-ruta-card {
+    border: 1px solid #e9f3ea;
+    border-radius: 16px;
+}
+
+.perfil-ruta-img {
+    height: 220px;
+    object-fit: cover;
+}
+
+.perfil-ruta-body {
+    padding: 1.5rem;
+}
+
+.perfil-ruta-titulo {
+    color: var(--verde-principal);
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+}
+
+.perfil-ruta-meta {
+    margin-bottom: 0.4rem;
+    color: #555;
+}
+
+.perfil-ruta-descripcion {
+    font-size: 0.95rem;
+}
+
+.btn-ver-ruta {
+    background-color: var(--verde-principal);
+    border-color: var(--verde-principal);
+}
+
+.btn-ver-ruta:hover {
+    background-color: #1b5e20;
+    border-color: #1b5e20;
+}
+
 /* ========== RESPONSIVE ========== */
+
+/* ========== ESTILOS PARA PÁGINA DE CONTACTO ========== */
+.contact-page {
+    padding: 2.5rem 0;
+}
+
+.contact-titulo {
+    color: var(--verde-principal);
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+.contact-subtitulo {
+    color: #6c757d;
+    margin-bottom: 1.5rem;
+}
+
+.formulario-contacto {
+    max-width: 720px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 1.75rem;
+    box-shadow: 0 6px 20px rgba(46,125,50,0.08);
+    border: 1px solid #edf8ef;
+}
+
+.grupo-input {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.grupo-input label {
+    font-weight: 700;
+    color: #495057;
+}
+
+.grupo-input input,
+.grupo-input textarea {
+    border: 1px solid #dfeede;
+    border-radius: 8px;
+    padding: 0.75rem 0.85rem;
+    font-size: 1rem;
+    transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.grupo-input input:focus,
+.grupo-input textarea:focus {
+    outline: none;
+    border-color: var(--verde-principal);
+    box-shadow: 0 0 0 0.2rem rgba(46,125,50,0.12);
+}
+
+.btn-enviar {
+    display: inline-block;
+    background-color: var(--verde-principal);
+    color: white;
+    border: none;
+    padding: 0.65rem 1rem;
+    border-radius: 8px;
+    font-weight: 700;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.btn-enviar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(46,125,50,0.18);
+}
 
 @media (max-width: 768px) {
     .card-filters {
