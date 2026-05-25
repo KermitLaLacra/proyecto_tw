@@ -4,7 +4,7 @@ FORMULARIO DE CONTACTO
 
 -->
 
-@extends('layouts.app')
+@extends('base')
 
 @section('contenido')
 <div class="contact-page container mt-5">

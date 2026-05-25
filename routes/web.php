@@ -47,11 +47,6 @@ Route::post('/rutas/{ruta}/oficial', [RutaController::class, 'toggleOficial'])
 Route::get('/rutas', [RutaController::class, 'index'])->name('rutas.index');
 Route::get('/rutas/{ruta}', [RutaController::class, 'show'])->name('rutas.show');
 
-
-// Route::resource('tipos', TipoController::class);
-// Route::resource('lugares', LugarController::class);
-// Route::resource('imagenes', ImagenRutaController::class);
-// Route::resource('valoraciones', ValoracionController::class);
-
+Route::view('/contacto', 'contacto')->name('contacto');
 
 require __DIR__.'/auth.php';
