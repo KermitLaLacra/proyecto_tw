@@ -13,13 +13,26 @@
     <div class="row mb-4">
         <div class="col-12">
             <div class="ruta-images-carousel">
-                @if($ruta->imagenes && $ruta->imagenes->count() > 0)
+                @php
+                    $imagenesCarrusel = collect();
+                    if ($ruta->imagen) {
+                        $imagenesCarrusel->push($ruta->imagen);
+                    }
+                    if ($ruta->imagenes && $ruta->imagenes->count() > 0) {
+                        foreach ($ruta->imagenes as $imagen) {
+                            $imagenesCarrusel->push($imagen->archivo);
+                        }
+                    }
+                    $imagenesCarrusel = $imagenesCarrusel->unique()->values();
+                @endphp
+
+                @if($imagenesCarrusel->count() > 0)
                     <div id="rutaCarousel" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
-                            @foreach($ruta->imagenes as $index => $imagen)
+                            @foreach($imagenesCarrusel as $index => $archivo)
                                 <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                                     <img
-                                        src="{{ asset('storage/' . $imagen->ruta) }}"
+                                        src="{{ asset('storage/' . $archivo) }}"
                                         class="d-block w-100"
                                         alt="Imagen de {{ $ruta->nombre }}"
                                         style="height: 500px; object-fit: cover;"
@@ -27,7 +40,7 @@
                                 </div>
                             @endforeach
                         </div>
-                        @if($ruta->imagenes->count() > 1)
+                        @if($imagenesCarrusel->count() > 1)
                             <button class="carousel-control-prev" type="button" data-bs-target="#rutaCarousel" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Anterior</span>

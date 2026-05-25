@@ -76,6 +76,12 @@ FORMULARIO PARA PUBLICAR UNA NUEVA RUTA
                             <input type="file" name="imagen_principal" class="form-control input-create" accept="image/*">
                         </div>
 
+                        <div class="mb-4">
+                            <label class="form-label label-create">Imágenes adicionales</label>
+                            <input type="file" name="imagenes[]" class="form-control input-create" accept="image/*" multiple>
+                            <small class="text-muted">Puedes subir varias imágenes para la galería de la ruta.</small>
+                        </div>
+
                         <div class="d-flex gap-2">
                             <button type="submit" class="btn btn-create btn-submit">Guardar Ruta</button>
                             <a href="{{ route('rutas.index') }}" class="btn btn-create btn-cancel">Cancelar</a>

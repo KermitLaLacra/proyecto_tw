@@ -7,6 +7,8 @@ use App\Models\Lugar;
 use App\Models\Ruta;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\File;
 use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
@@ -60,7 +62,7 @@ class DatabaseSeeder extends Seeder
         $lugaresCreados = collect($lugares)->map(fn($lugar) => Lugar::create($lugar));
 
         // 3. Crear 3 rutas al usuario administrador
-        Ruta::firstOrCreate([
+        $this->crearRutaConImagenes([
             'nombre' => 'Ruta de las Alpujarras',
         ], [
             'user_id' => $user1->id,
@@ -72,9 +74,9 @@ class DatabaseSeeder extends Seeder
             'tipo_ruta' => 'turismo',
             'dificultad' => 'intermedio',
             'lugar_id' => $lugaresCreados[0]->id,
-        ]);
+        ], 'alpujarra.jpg');
 
-        Ruta::firstOrCreate([
+        $this->crearRutaConImagenes([
             'nombre' => 'Senderismo Sierra Nevada',
         ], [
             'user_id' => $user1->id,
@@ -86,9 +88,9 @@ class DatabaseSeeder extends Seeder
             'tipo_ruta' => 'senderismo',
             'dificultad' => 'dificil',
             'lugar_id' => $lugaresCreados[1]->id,
-        ]);
+        ], 'sierra_nevada.jpg');
 
-        Ruta::firstOrCreate([
+        $this->crearRutaConImagenes([
             'nombre' => 'Paseo por la Costa Tropical',
         ], [
             'user_id' => $user1->id,
@@ -100,6 +102,51 @@ class DatabaseSeeder extends Seeder
             'tipo_ruta' => 'turismo',
             'dificultad' => 'muy_facil',
             'lugar_id' => $lugaresCreados[2]->id,
-        ]);
+        ], 'loja.avif');
+    }
+
+    private function crearRutaConImagenes(array $busqueda, array $datos, ?string $imagenPrincipal = null, array $imagenesAdicionales = []): Ruta
+    {
+        if (! Storage::disk('public')->exists('rutas')) {
+            Storage::disk('public')->makeDirectory('rutas');
+        }
+
+        $ruta = Ruta::firstOrCreate($busqueda, $datos);
+
+        if ($imagenPrincipal && ! $ruta->imagen) {
+            $ruta->imagen = $this->copiarImagenDeSeeder($imagenPrincipal);
+            $ruta->save();
+            if ($ruta->imagen) {
+                $ruta->imagenes()->firstOrCreate([
+                    'archivo' => $ruta->imagen,
+                ], [
+                    'orden' => 0,
+                ]);
+            }
+        }
+
+        foreach ($imagenesAdicionales as $index => $archivo) {
+            $destino = $this->copiarImagenDeSeeder($archivo);
+            if ($destino) {
+                $ruta->imagenes()->firstOrCreate([
+                    'archivo' => $destino,
+                ], [
+                    'orden' => $index + 1,
+                ]);
+            }
+        }
+
+        return $ruta;
+    }
+
+    private function copiarImagenDeSeeder(string $archivo): string
+    {
+        $origen = base_path('media/' . $archivo);
+
+        if (! file_exists($origen)) {
+            return '';
+        }
+
+        return Storage::disk('public')->putFileAs('rutas', new File($origen), basename($archivo));
     }
 }
