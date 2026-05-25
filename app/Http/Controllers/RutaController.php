@@ -75,6 +75,11 @@ class RutaController extends Controller
             $query->where('desnivel', '<=', $request->desnivel_max);
         }
 
+        // Filtro rutas oficiales
+        if ($request->has('oficial') && $request->oficial == '1') {
+            $query->where('es_oficial', true);
+        }
+
         $rutas = $query->get();
 
         return view('rutas', [

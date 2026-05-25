@@ -1,9 +1,3 @@
-<!--
-
-FORMULARIO DE CONTACTO
-
--->
-
 @extends('base')
 
 @section('contenido')

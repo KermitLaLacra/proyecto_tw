@@ -31,7 +31,6 @@
                     <div class="card card-filters">
                         <div class="card-body">
                             <div class="row g-2 align-items-end">
-                                <!-- Filtro por Lugar -->
                                 <div class="col-12 col-sm-6 col-md-3 col-lg-2">
                                     <label for="lugar" class="form-label">Lugar</label>
                                     <select class="form-select" id="lugar" name="lugar">
@@ -44,7 +43,6 @@
                                     </select>
                                 </div>
 
-                                <!-- Filtro por Tipo -->
                                 <div class="col-12 col-sm-6 col-md-3 col-lg-2">
                                     <label for="tipo" class="form-label">Tipo</label>
                                     <select class="form-select" id="tipo" name="tipo">
@@ -54,7 +52,6 @@
                                     </select>
                                 </div>
 
-                                <!-- Filtro por Dificultad -->
                                 <div class="col-12 col-sm-6 col-md-3 col-lg-2">
                                     <label for="dificultad" class="form-label">Dificultad</label>
                                     <select class="form-select" id="dificultad" name="dificultad">
@@ -67,71 +64,39 @@
                                     </select>
                                 </div>
 
-                                <!-- Filtro por Longitud mínima -->
-                                <div class="col-12 col-sm-6 col-md-2 col-lg-2">
-                                    <label for="km_min" class="form-label">Distancia mín.</label>
-                                    <input 
-                                        type="number" 
-                                        class="form-control" 
-                                        id="km_min" 
-                                        name="km_min" 
-                                        placeholder="0"
-                                        step="0.1"
-                                        value="{{ request('km_min') }}"
-                                    >
+                                <div class="col-12 col-sm-6 col-md-2 col-lg-1">
+                                    <label for="km_min" class="form-label">Km mín.</label>
+                                    <input type="number" class="form-control" id="km_min" name="km_min" placeholder="0" step="0.1" value="{{ request('km_min') }}">
                                 </div>
 
-                                <!-- Filtro por Longitud máxima -->
-                                <div class="col-12 col-sm-6 col-md-2 col-lg-2">
-                                    <label for="km_max" class="form-label">Distancia máx.</label>
-                                    <input 
-                                        type="number" 
-                                        class="form-control" 
-                                        id="km_max" 
-                                        name="km_max" 
-                                        placeholder="{{ number_format($km_max, 1) }}"
-                                        step="0.1"
-                                        max="{{ $km_max }}"
-                                        value="{{ request('km_max') }}"
-                                    >
+                                <div class="col-12 col-sm-6 col-md-2 col-lg-1">
+                                    <label for="km_max" class="form-label">Km máx.</label>
+                                    <input type="number" class="form-control" id="km_max" name="km_max" placeholder="{{ number_format($km_max, 1) }}" step="0.1" max="{{ $km_max }}" value="{{ request('km_max') }}">
                                 </div>
 
-                                <!-- Filtro por Desnivel mínimo -->
-                                <div class="col-12 col-sm-6 col-md-2 col-lg-2">
-                                    <label for="desnivel_min" class="form-label">Desnivel mín.</label>
-                                    <input 
-                                        type="number" 
-                                        class="form-control" 
-                                        id="desnivel_min" 
-                                        name="desnivel_min" 
-                                        placeholder="0"
-                                        step="1"
-                                        min="0"
-                                        max="{{ $desnivel_max }}"
-                                        value="{{ request('desnivel_min') }}"
-                                    >
+                                <div class="col-12 col-sm-6 col-md-2 col-lg-1">
+                                    <label for="desnivel_min" class="form-label">Desn. mín.</label>
+                                    <input type="number" class="form-control" id="desnivel_min" name="desnivel_min" placeholder="0" step="1" min="0" max="{{ $desnivel_max }}" value="{{ request('desnivel_min') }}">
                                 </div>
 
-                                <!-- Filtro por Desnivel máximo -->
-                                <div class="col-12 col-sm-6 col-md-2 col-lg-2">
-                                    <label for="desnivel_max" class="form-label">Desnivel máx.</label>
-                                    <input 
-                                        type="number" 
-                                        class="form-control" 
-                                        id="desnivel_max" 
-                                        name="desnivel_max" 
-                                        placeholder="{{ number_format($desnivel_max, 0) }}"
-                                        step="1"
-                                        max="{{ $desnivel_max }}"
-                                        value="{{ request('desnivel_max') }}"
-                                    >
+                                <div class="col-12 col-sm-6 col-md-2 col-lg-1">
+                                    <label for="desnivel_max" class="form-label">Desn. máx.</label>
+                                    <input type="number" class="form-control" id="desnivel_max" name="desnivel_max" placeholder="{{ number_format($desnivel_max, 0) }}" step="1" max="{{ $desnivel_max }}" value="{{ request('desnivel_max') }}">
                                 </div>
-                                <div class="col-12 col-lg-2 d-flex gap-2">
+
+                                <div class="col-12 col-sm-12 col-md-2 col-lg-2 pb-1">
+                                    <div class="form-check form-switch fs-6">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="oficial_rutas" name="oficial" value="1" {{ request('oficial') ? 'checked' : '' }}>
+                                        <label class="form-check-label fw-bold" for="oficial_rutas" style="color: var(--verde-principal);">Solo Oficiales 🏅</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-lg-12 d-flex gap-2 mt-3">
                                     <button type="submit" class="btn btn-success flex-grow-1 btn-filter">
                                         🔍 Buscar
                                     </button>
-                                    <a href="{{ route('rutas.index') }}" class="btn btn-outline-secondary btn-filter">
-                                        🔄
+                                    <a href="{{ route('rutas.index') }}" class="btn btn-outline-secondary btn-filter" title="Limpiar filtros">
+                                        🔄 Limpiar
                                     </a>
                                 </div>
                             </div>
