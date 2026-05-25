@@ -115,6 +115,7 @@ class RutaController extends Controller
         }
 
         Ruta::create([
+            'user_id' => auth()->id(),
             'lugar_id' => $request->lugar_id,
             'nombre' => $request->nombre,
             'km' => $request->km,

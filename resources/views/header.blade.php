@@ -28,7 +28,7 @@ CABEZERA, SE INCLUYE EN TODAS LAS VISTAS
                 <ul class="navbar-nav">
                     @auth
                         <li class="nav-item">
-                            <a class="nav-link nav-text-yellow fw-bold" href="/profile">Mi Perfil</a>
+                            <a class="nav-link nav-text-yellow fw-bold" href="/dashboard">Mi Perfil</a>
                         </li>
                     @else
                         <li class="nav-item">

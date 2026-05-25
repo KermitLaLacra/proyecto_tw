@@ -583,3 +583,98 @@
 .auth-link:hover {
     color: var(--amarillo-detalle) !important;
 }
+
+
+/* ========== ESTILOS PARA LA VISTA DE PERFIL ========== */
+
+/* Contenedor principal de cada sección del perfil (parecido a card-create) */
+.card-profile {
+    border-radius: 8px;
+    border-left: 4px solid var(--verde-principal);
+    box-shadow: 0 4px 12px rgba(46, 125, 50, 0.1);
+    background-color: #fff;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    transition: all 0.3s ease;
+}
+
+.card-profile:hover {
+    box-shadow: 0 6px 16px rgba(46, 125, 50, 0.15);
+}
+
+/* Títulos y textos descriptivos de cada sección */
+.titulo-profile {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--verde-principal);
+    margin-bottom: 0.5rem;
+}
+
+.texto-profile {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+/* Etiquetas y campos de texto (heredando la elegancia de input-create) */
+.label-profile {
+    font-weight: 600;
+    color: var(--verde-principal);
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.input-profile {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    width: 100%;
+    background-color: #fafafa;
+}
+
+.input-profile:focus {
+    border-color: var(--verde-principal);
+    box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.25);
+    background-color: #fff;
+    outline: none;
+}
+
+/* Botón especial para eliminar cuenta (Rojo, para mantener la semántica de peligro, pero con tu estilo de hover) */
+.btn-danger-profile {
+    background-color: transparent;
+    border: 2px solid #dc3545; /* Rojo Bootstrap */
+    color: #dc3545;
+    font-weight: 600;
+    border-radius: 4px;
+    padding: 0.75rem 2rem;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.btn-danger-profile:hover {
+    background-color: #dc3545;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+/* Modal de confirmación para eliminar cuenta */
+.modal-profile-title {
+    color: #dc3545;
+    font-weight: 700;
+}
+
+/* Responsive para el perfil */
+@media (max-width: 768px) {
+    .card-profile {
+        padding: 1.5rem;
+    }
+    
+    .titulo-profile {
+        font-size: 1.25rem;
+    }
+}

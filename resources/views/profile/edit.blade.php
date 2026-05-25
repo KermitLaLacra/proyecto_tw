@@ -1,29 +1,28 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }}
-        </h2>
-    </x-slot>
+@extends('base')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-profile-information-form')
-                </div>
+@section('contenido')
+<div class="container">
+    <h1 class="titulo-create mb-4">Ajustes de mi Cuenta</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-md-9 col-lg-8">
+            
+            @include('profile.partials.update-profile-information-form')
+
+            @include('profile.partials.update-password-form')
+
+            @include('profile.partials.delete-user-form')
+
+            <div class="d-grid mt-2 mb-5">
+                <form method="POST" action="{{ route('logout') }}" class="m-0">
+                    @csrf
+                    <button type="submit" class="btn btn-outline-secondary w-100 py-3 fw-bold" style="border-radius: 8px; border-width: 2px;">
+                        Cerrar Sesión
+                    </button>
+                </form>
             </div>
 
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-password-form')
-                </div>
-            </div>
-
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.delete-user-form')
-                </div>
-            </div>
         </div>
     </div>
-</x-app-layout>
+</div>
+@endsection

@@ -4,7 +4,8 @@
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-md-8 col-lg-5">
-            <div class="card card-create shadow-sm border-0">
+            
+            <div class="card card-create shadow-sm border-0 mb-4">
                 <div class="card-body p-5">
                     <h1 class="titulo-create mb-4">Iniciar Sesión</h1>
 
@@ -52,6 +53,18 @@
                     </form>
                 </div>
             </div>
+
+            <div class="card card-create shadow-sm border-0">
+                <div class="card-body p-4 text-center">
+                    <h2 class="h5 fw-bold" style="color: var(--verde-principal);">¿No tienes una cuenta?</h2>
+                    <p class="text-muted small mb-4">Regístrate ahora para disfrutar de todos los beneficios de nuestra plataforma.</p>
+                    
+                    <a href="{{ route('register') }}" class="btn btn-create btn-submit w-100 d-block">
+                        Crear Cuenta Nueva
+                    </a>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

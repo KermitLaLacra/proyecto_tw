@@ -17,13 +17,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Crear usuario de prueba
-        User::factory()->create([
+        // 1. Crear 3 usuarios de prueba diferentes con sus credenciales particulares
+        $user1 = User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
 
-        // Crear 5 lugares (municipios de Granada)
+        $user2 = User::factory()->create([
+            'name' => 'Juan Guía',
+            'email' => 'juan@example.com',
+        ]);
+
+        $user3 = User::factory()->create([
+            'name' => 'María Senderos',
+            'email' => 'maria@example.com',
+        ]);
+
+        // 2. Crear 5 lugares (municipios de Granada)
         $lugares = [
             ['lugar' => 'Granada'],
             ['lugar' => 'Motril'],
@@ -34,8 +44,9 @@ class DatabaseSeeder extends Seeder
 
         $lugaresCreados = collect($lugares)->map(fn($lugar) => Lugar::create($lugar));
 
-        // Crear 3 rutas
+        // 3. Crear 3 rutas asociando cada una a un usuario diferente
         Ruta::create([
+            'user_id' => $user1->id, // <- Ruta asignada a Test User
             'nombre' => 'Ruta de las Alpujarras',
             'km' => 25.50,
             'desnivel' => 850,
@@ -48,6 +59,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Ruta::create([
+            'user_id' => $user2->id, // <- Ruta asignada a Juan Guía
             'nombre' => 'Senderismo Sierra Nevada',
             'km' => 15.75,
             'desnivel' => 1200,
@@ -60,6 +72,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Ruta::create([
+            'user_id' => $user3->id, // <- Ruta asignada a María Senderos
             'nombre' => 'Paseo por la Costa Tropical',
             'km' => 8.30,
             'desnivel' => 120,

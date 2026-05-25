@@ -1,24 +1,94 @@
-<!--
+@extends('base')
 
-VISTA DEL DASHBOARD, CREADA POR DEFECTO POR LARAVEL, NO TOCAR POR AHORA, A MENOS QUE SEA NECESARIO
+@section('contenido')
+<div class="container py-5">
+    
+    <div class="d-flex justify-content-between align-items-center mb-5 flex-wrap gap-3">
+        <div>
+            <h1 class="titulo-create mb-1">Mi Panel de Control</h1>
+            <p class="text-muted">¡Hola, {{ auth()->user()->name }}! Aquí puedes gestionar tus aportes.</p>
+        </div>
+        <a href="{{ route('rutas.create') }}" class="btn btn-create btn-submit">
+            + Publicar Nueva Ruta
+        </a>
+    </div>
 
--->
+    <h2 class="h4 mb-4" style="color: var(--verde-principal); font-weight: 700;">Mis Rutas Publicadas</h2>
 
+    <div class="row">
+        @php
+            // Consultamos directamente las rutas que pertenecen al usuario logueado
+            $misRutas = \App\Models\Ruta::where('user_id', auth()->id())->get();
+        @endphp
 
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+        @forelse($misRutas as $ruta)
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100 shadow-sm border-0" style="border-bottom: 4px solid var(--verde-principal);">
+                    
+                    <img 
+                        src="{{ $ruta->imagen ? asset('storage/' . $ruta->imagen) : 'https://via.placeholder.com/400x250?text=' . urlencode($ruta->nombre) }}" 
+                        class="card-img-top" 
+                        alt="{{ $ruta->nombre }}"
+                        style="height: 200px; object-fit: cover;"
+                    >
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
+                    <div class="card-body">
+                        <h4 class="card-title text-success fw-bold">{{ $ruta->nombre }}</h4>
+                        
+                        <p class="card-text mb-1">
+                            <strong>📏 Distancia:</strong> {{ number_format($ruta->km, 2) }} km
+                        </p>
+                        <p class="card-text mb-1">
+                            <strong>🧭 Tipo:</strong> 
+                            <span class="badge badge-tipo-{{ $ruta->tipo_ruta }}">
+                                {{ ucfirst($ruta->tipo_ruta) }}
+                            </span>
+                        </p>
+                        <p class="card-text">
+                            <strong>⛰️ Dificultad:</strong> 
+                            <span class="badge badge-dificultad-{{ str_replace('_', '-', $ruta->dificultad) }}">
+                                {{ ucfirst(str_replace('_', ' ', $ruta->dificultad)) }}
+                            </span>
+                        </p>
+                    </div>
+
+                    <div class="card-footer bg-white border-0 pb-4">
+                        <div class="d-flex gap-2">
+                            <a href="{{ route('rutas.show', $ruta->id) }}" class="btn btn-outline-secondary w-100 fw-bold">
+                                Ver
+                            </a>
+                            
+                            <a href="{{ route('rutas.edit', $ruta->id) }}" class="btn btn-create w-100 text-white" style="background-color: var(--verde-principal);">
+                                Editar
+                            </a>
+                        </div>
+                        
+                        <div class="mt-2">
+                            <form action="{{ route('rutas.destroy', $ruta->id) }}" method="POST" class="m-0" onsubmit="return confirm('¿Estás totalmente seguro de que quieres borrar esta ruta? Esta acción no se puede deshacer.');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-outline-danger w-100 fw-bold">
+                                    Eliminar Ruta
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        @empty
+            <div class="col-12">
+                <div class="card card-create border-0 text-center py-5 shadow-sm">
+                    <div class="card-body py-5">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🏞️</div>
+                        <h3 class="fw-bold" style="color: var(--verde-principal);">Aún no has publicado ninguna ruta</h3>
+                        <p class="text-muted mb-4">¡Anímate y comparte tu primer sendero con la comunidad de SenderoGuía!</p>
+                        <a href="{{ route('rutas.create') }}" class="btn btn-create btn-submit px-4 py-2">
+                            Crear mi primera ruta
+                        </a>
+                    </div>
+                </div>
+            </div>
+        @endforelse
     </div>
-</x-app-layout>
+</div>
+@endsection

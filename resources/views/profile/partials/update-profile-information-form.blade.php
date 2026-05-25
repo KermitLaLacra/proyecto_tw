@@ -1,63 +1,42 @@
-<section>
+<section class="card-profile">
     <header>
-        <h2 class="text-lg font-medium text-gray-900">
-            {{ __('Profile Information') }}
-        </h2>
-
-        <p class="mt-1 text-sm text-gray-600">
-            {{ __("Update your account's profile information and email address.") }}
-        </p>
+        <h2 class="titulo-profile">Actualizar Contraseña</h2>
+        <p class="texto-profile">Asegúrate de utilizar una contraseña larga y compleja para mantener tu cuenta completamente protegida.</p>
     </header>
 
-    <form id="send-verification" method="post" action="{{ route('verification.send') }}">
+    <form method="post" action="{{ route('password.update') }}" class="mt-4">
         @csrf
-    </form>
+        @method('put')
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
-        @csrf
-        @method('patch')
-
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+        <div class="mb-3">
+            <label for="update_password_current_password" class="label-profile">Contraseña Actual</label>
+            <input id="update_password_current_password" name="current_password" type="password" class="input-profile @error('current_password', 'updatePassword') is-invalid @enderror" autocomplete="current-password">
+            @error('current_password', 'updatePassword')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
 
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
-            <x-input-error class="mt-2" :messages="$errors->get('email')" />
-
-            @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
-                <div>
-                    <p class="text-sm mt-2 text-gray-800">
-                        {{ __('Your email address is unverified.') }}
-
-                        <button form="send-verification" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            {{ __('Click here to re-send the verification email.') }}
-                        </button>
-                    </p>
-
-                    @if (session('status') === 'verification-link-sent')
-                        <p class="mt-2 font-medium text-sm text-green-600">
-                            {{ __('A new verification link has been sent to your email address.') }}
-                        </p>
-                    @endif
-                </div>
-            @endif
+        <div class="mb-3">
+            <label for="update_password_password" class="label-profile">Nueva Contraseña</label>
+            <input id="update_password_password" name="password" type="password" class="input-profile @error('password', 'updatePassword') is-invalid @enderror" autocomplete="new-password">
+            @error('password', 'updatePassword')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
 
-        <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+        <div class="mb-3">
+            <label for="update_password_password_confirmation" class="label-profile">Confirmar Nueva Contraseña</label>
+            <input id="update_password_password_confirmation" name="password_confirmation" type="password" class="input-profile @error('password_confirmation', 'updatePassword') is-invalid @enderror" autocomplete="new-password">
+            @error('password_confirmation', 'updatePassword')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
 
-            @if (session('status') === 'profile-updated')
-                <p
-                    x-data="{ show: true }"
-                    x-show="show"
-                    x-transition
-                    x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600"
-                >{{ __('Saved.') }}</p>
+        <div class="d-flex align-items-center gap-3 mt-4">
+            <button type="submit" class="btn btn-create btn-submit">Actualizar Clave</button>
+
+            @if (session('status') === 'password-updated')
+                <span class="text-success small fw-semibold">✓ Contraseña cambiada</span>
             @endif
         </div>
     </form>

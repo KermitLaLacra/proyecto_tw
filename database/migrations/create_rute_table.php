@@ -10,6 +10,7 @@ return new class extends Migration
     {
         Schema::create('rutas', function(Blueprint $table){
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->string('nombre');
             $table->double('km', 5, 2);
             $table->integer('desnivel')->default(0);
