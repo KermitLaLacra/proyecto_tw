@@ -21,6 +21,14 @@ class ProfileController extends Controller
         ]);
     }
 
+    public function show(Request $request): View
+    {
+        return view('user', [
+            'user' => $request->user(),
+            'rutas' => $request->user()->rutasFavoritas()->with('lugar')->get(),
+        ]);
+    }
+
     /**
      * Update the user's profile information.
      */
