@@ -7,6 +7,7 @@ use App\Http\Controllers\TipoController;
 use App\Http\Controllers\LugarController;
 use App\Http\Controllers\ImagenRutaController;
 use App\Http\Controllers\ValoracionController;
+use App\Http\Controllers\FavoritoController;
 use App\Models\Ruta;
 use App\Models\Tipo;
 use App\Models\Lugar;
@@ -31,6 +32,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/usuario', [ProfileController::class, 'show'])->name('user.show');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/mis-favoritos', [FavoritoController::class, 'index'])->name('favoritos.index');
+    Route::post('/ruta/{ruta}/favorito', [FavoritoController::class, 'toggle'])->name('favoritos.toggle');
 });
 
 Route::middleware('auth')->group(function () {

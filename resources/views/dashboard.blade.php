@@ -22,6 +22,66 @@
         </a>
     </div>
 
+    {{-- SECCIÓN DE RUTAS FAVORITAS --}}
+    <h2 class="h4 mb-4" style="color: var(--verde-principal); font-weight: 700;">Mis Rutas Favoritas</h2>
+    
+    <div class="row mb-5">
+        @php
+            $rutasFavoritas = auth()->user()->rutasFavoritas()->with('lugar')->get();
+        @endphp
+
+        @forelse($rutasFavoritas as $ruta)
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100 shadow-sm border-0" style="border-bottom: 4px solid gold;">
+                    <div class="position-relative">
+                        <img 
+                            src="{{ $ruta->imagen ? asset('storage/' . $ruta->imagen) : 'https://via.placeholder.com/400x250?text=' . urlencode($ruta->nombre) }}" 
+                            class="card-img-top" 
+                            alt="{{ $ruta->nombre }}"
+                            style="height: 200px; object-fit: cover;"
+                        >
+                        <div style="position: absolute; top: 8px; right: 8px;">
+                            <form method="POST" action="{{ route('favoritos.toggle', $ruta->id) }}">
+                                @csrf
+                                <button type="submit" class="btn p-1 border-0" style="background: rgba(255,255,255,0.85); border-radius: 999px;">
+                                    <span style="color: gold; font-size: 2rem; line-height: 1;">★</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <h4 class="card-title fw-bold">{{ $ruta->nombre }}</h4>
+                        <p class="card-text mb-1">
+                            <strong>📍 Lugar:</strong> {{ $ruta->lugar->lugar ?? 'No especificado' }}
+                        </p>
+                        <p class="card-text mb-1">
+                            <strong>📏 Distancia:</strong> {{ number_format($ruta->km, 2) }} km
+                        </p>
+                        <p class="card-text">
+                            <strong>⛰️ Dificultad:</strong> 
+                            <span class="badge badge-dificultad-{{ str_replace('_', '-', $ruta->dificultad) }}">
+                                {{ ucfirst(str_replace('_', ' ', $ruta->dificultad)) }}
+                            </span>
+                        </p>
+                    </div>
+
+                    <div class="card-footer bg-white border-0 pb-3">
+                        <a href="{{ route('rutas.show', $ruta->id) }}" class="btn btn-outline-primary w-100 fw-bold">
+                            Ver detalles
+                        </a>
+                    </div>
+                </div>
+            </div>
+        @empty
+            <div class="col-12">
+                <div class="alert alert-info" role="alert">
+                    <p class="mb-0">Aún no has marcado ninguna ruta como favorita. ¡Explora el catálogo y añade tus rutas preferidas!</p>
+                </div>
+            </div>
+        @endforelse
+    </div>
+
     <h2 class="h4 mb-4" style="color: var(--verde-principal); font-weight: 700;">Mis Rutas Publicadas</h2>
 
     <div class="row">

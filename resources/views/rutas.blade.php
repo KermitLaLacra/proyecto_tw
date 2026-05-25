@@ -147,13 +147,34 @@
         @forelse($rutas as $ruta)
             <div class="col-md-6 col-lg-4 mb-4">
                 <div class="card h-100">
-                    <!-- Imagen de la ruta -->
-                    <img 
-                        src="{{ $ruta->imagen ?? 'https://via.placeholder.com/400x250?text=' . urlencode($ruta->nombre) }}" 
-                        class="card-img-top" 
-                        alt="{{ $ruta->nombre }}"
-                        style="height: 250px; object-fit: cover;"
-                    >
+                    <!-- Imagen de la ruta (con overlay de favorito) -->
+                    <div class="position-relative">
+                        <img 
+                            src="{{ $ruta->imagen ? asset('storage/' . $ruta->imagen) : 'https://via.placeholder.com/400x250?text=' . urlencode($ruta->nombre) }}" 
+                            class="card-img-top" 
+                            alt="{{ $ruta->nombre }}"
+                            style="height: 250px; object-fit: cover; border-top-left-radius: .25rem; border-top-right-radius: .25rem;"
+                        >
+
+                        <div style="position: absolute; top: 8px; right: 8px;">
+                            @if(auth()->check())
+                                <form method="POST" action="{{ route('favoritos.toggle', $ruta->id) }}">
+                                    @csrf
+                                    <button type="submit" class="btn p-1 border-0" style="background: rgba(255,255,255,0.85); border-radius: 999px;">
+                                        @if(auth()->user()->rutasFavoritas->contains($ruta->id))
+                                            <span style="color: gold; font-size: 2rem; line-height: 1;">★</span>
+                                        @else
+                                            <span style="color: #cccccc; font-size: 2rem; line-height: 1;">☆</span>
+                                        @endif
+                                    </button>
+                                </form>
+                            @else
+                                <a href="{{ route('login') }}" class="btn p-1" style="background: rgba(255,255,255,0.85); border-radius: 999px;">
+                                    <span style="color: #cccccc; font-size: 2rem; line-height: 1;">☆</span>
+                                </a>
+                            @endif
+                        </div>
+                    </div>
 
                     <div class="card-body">
                         <!-- Nombre de la ruta -->

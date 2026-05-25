@@ -58,6 +58,26 @@
                 @if($ruta->es_oficial)
                     <span class="badge bg-success text-warning" style="font-size: 0.75rem; vertical-align: middle;">Oficial</span>
                 @endif
+
+                {{-- Estrella de favorito al lado de la etiqueta Oficial --}}
+                <span style="margin-left: .5rem;">
+                    @if(auth()->check())
+                        <form method="POST" action="{{ route('favoritos.toggle', $ruta->id) }}" style="display: inline-block">
+                            @csrf
+                            <button type="submit" class="btn p-0 border-0 align-baseline" style="background: transparent;">
+                                @if(auth()->user()->rutasFavoritas->contains($ruta->id))
+                                    <span style="color: gold; font-size: 1.75rem;">★</span>
+                                @else
+                                    <span style="color: #cccccc; font-size: 1.75rem;">☆</span>
+                                @endif
+                            </button>
+                        </form>
+                    @else
+                        <a href="{{ route('login') }}" class="text-decoration-none">
+                            <span style="color: #cccccc; font-size: 1.75rem;">☆</span>
+                        </a>
+                    @endif
+                </span>
             </h1>
         </div>
     </div>
