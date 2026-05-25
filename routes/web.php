@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ContactoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RutaController;
 use App\Http\Controllers\TipoController;
@@ -48,5 +49,6 @@ Route::get('/rutas', [RutaController::class, 'index'])->name('rutas.index');
 Route::get('/rutas/{ruta}', [RutaController::class, 'show'])->name('rutas.show');
 
 Route::view('/contacto', 'contacto')->name('contacto');
+Route::post('/contacto/enviar', [ContactoController::class, 'enviar'])->name('contacto.enviar');
 
 require __DIR__.'/auth.php';
