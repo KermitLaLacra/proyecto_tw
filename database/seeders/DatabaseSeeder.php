@@ -7,6 +7,7 @@ use App\Models\Lugar;
 use App\Models\Ruta;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,20 +19,34 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // 1. Crear 3 usuarios de prueba diferentes con sus credenciales particulares
-        $user1 = User::factory()->create([
-            'name' => 'Test User',
+        $user1 = User::firstOrCreate([
             'email' => 'test@example.com',
+        ], [
+            'name' => 'Test User',
+            'password' => bcrypt('password'),
         ]);
 
-        $user2 = User::factory()->create([
-            'name' => 'Juan Guía',
+        $user2 = User::firstOrCreate([
             'email' => 'juan@example.com',
+        ], [
+            'name' => 'Juan Guía',
+            'password' => bcrypt('password'),
         ]);
 
-        $user3 = User::factory()->create([
-            'name' => 'María Senderos',
+        $user3 = User::firstOrCreate([
             'email' => 'maria@example.com',
+        ], [
+            'name' => 'María Senderos',
+            'password' => bcrypt('password'),
         ]);
+
+        // Crear roles con Spatie
+        $rolUsuario = Role::firstOrCreate(['name' => 'usuario']);
+        $rolAdmin = Role::firstOrCreate(['name' => 'administrador']);
+
+        $user1->assignRole($rolAdmin);
+        $user2->assignRole($rolUsuario);
+        $user3->assignRole($rolUsuario);
 
         // 2. Crear 5 lugares (municipios de Granada)
         $lugares = [
@@ -44,10 +59,11 @@ class DatabaseSeeder extends Seeder
 
         $lugaresCreados = collect($lugares)->map(fn($lugar) => Lugar::create($lugar));
 
-        // 3. Crear 3 rutas asociando cada una a un usuario diferente
-        Ruta::create([
-            'user_id' => $user1->id, // <- Ruta asignada a Test User
+        // 3. Crear 3 rutas al usuario administrador
+        Ruta::firstOrCreate([
             'nombre' => 'Ruta de las Alpujarras',
+        ], [
+            'user_id' => $user1->id,
             'km' => 25.50,
             'desnivel' => 850,
             'es_oficial' => false,
@@ -58,9 +74,10 @@ class DatabaseSeeder extends Seeder
             'lugar_id' => $lugaresCreados[0]->id,
         ]);
 
-        Ruta::create([
-            'user_id' => $user2->id, // <- Ruta asignada a Juan Guía
+        Ruta::firstOrCreate([
             'nombre' => 'Senderismo Sierra Nevada',
+        ], [
+            'user_id' => $user1->id,
             'km' => 15.75,
             'desnivel' => 1200,
             'es_oficial' => true,
@@ -71,9 +88,10 @@ class DatabaseSeeder extends Seeder
             'lugar_id' => $lugaresCreados[1]->id,
         ]);
 
-        Ruta::create([
-            'user_id' => $user3->id, // <- Ruta asignada a María Senderos
+        Ruta::firstOrCreate([
             'nombre' => 'Paseo por la Costa Tropical',
+        ], [
+            'user_id' => $user1->id,
             'km' => 8.30,
             'desnivel' => 120,
             'es_oficial' => false,

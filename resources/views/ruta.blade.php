@@ -2,6 +2,13 @@
 
 @section('contenido')
 <div class="container mt-5 ruta-detalle">
+    @if(session('status'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('status') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     <!-- Sección de imágenes -->
     <div class="row mb-4">
         <div class="col-12">
@@ -57,6 +64,15 @@
                 {{ $ruta->nombre }}
                 @if($ruta->es_oficial)
                     <span class="badge bg-success text-warning" style="font-size: 0.75rem; vertical-align: middle;">Oficial</span>
+                @endif
+
+                @if(auth()->check() && auth()->user()->hasRole('administrador'))
+                    <form method="POST" action="{{ route('rutas.oficial.toggle', $ruta->id) }}" class="d-inline ms-2">
+                        @csrf
+                        <button type="submit" class="btn btn-sm btn-outline-light text-dark" style="border-radius: 999px; padding: .35rem .75rem;">
+                            {{ $ruta->es_oficial ? 'Quitar oficial' : 'Marcar oficial' }}
+                        </button>
+                    </form>
                 @endif
 
                 {{-- Estrella de favorito al lado de la etiqueta Oficial --}}

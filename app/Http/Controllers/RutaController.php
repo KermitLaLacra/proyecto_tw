@@ -124,6 +124,7 @@ class RutaController extends Controller
             'tipo_ruta' => $request->tipo_ruta,
             'dificultad' => $request->dificultad,
             'imagen' => $imagen,
+            'es_oficial' => false,
         ]);
 
         return redirect('/rutas');
@@ -179,5 +180,17 @@ class RutaController extends Controller
         $ruta->delete();
 
         return redirect('/rutas');
+    }
+
+    public function toggleOficial(Ruta $ruta)
+    {
+        if (! auth()->check() || ! auth()->user()->hasRole('administrador')) {
+            abort(403);
+        }
+
+        $ruta->es_oficial = ! $ruta->es_oficial;
+        $ruta->save();
+
+        return back()->with('status', $ruta->es_oficial ? 'Ruta marcada como oficial.' : 'Ruta desmarcada como oficial.');
     }
 }
