@@ -51,4 +51,6 @@ Route::get('/rutas/{ruta}', [RutaController::class, 'show'])->name('rutas.show')
 Route::view('/contacto', 'contacto')->name('contacto');
 Route::post('/contacto/enviar', [ContactoController::class, 'enviar'])->name('contacto.enviar');
 
+Route::resource('lugares', LugarController::class)->middleware('auth');
+
 require __DIR__.'/auth.php';

@@ -24,9 +24,17 @@
             <h1 class="titulo-create mb-1">Mi Panel de Control</h1>
             <p class="text-muted">¡Hola, {{ auth()->user()->name }}! Aquí puedes gestionar tus aportes.</p>
         </div>
-        <a href="{{ route('rutas.create') }}" class="btn btn-create btn-submit">
-            + Publicar Nueva Ruta
-        </a>
+        <div class="d-flex flex-wrap gap-2">
+            @if(auth()->user()->hasRole('administrador'))
+                <button type="button" class="btn fw-bold px-4" data-bs-toggle="modal" data-bs-target="#modalAddLugar" style="border: 2px solid var(--verde-principal); color: var(--verde-principal); border-radius: 4px; transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='var(--verde-principal)'; this.style.color='white';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--verde-principal)';">
+                    📍 Añadir Lugar
+                </button>
+            @endif
+
+            <a href="{{ route('rutas.create') }}" class="btn btn-create btn-submit">
+                + Publicar Nueva Ruta
+            </a>
+        </div>
     </div>
 
     <div class="mb-5">
@@ -195,4 +203,32 @@
         </div>
     </div>
 </div>
+@if(auth()->user()->hasRole('administrador'))
+        <div class="modal fade" id="modalAddLugar" tabindex="-1" aria-labelledby="modalAddLugarLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0 shadow" style="border-radius: 12px; overflow: hidden;">
+                    <div class="modal-header text-white" style="background-color: var(--verde-principal); border-bottom: none;">
+                        <h5 class="modal-title fw-bold" id="modalAddLugarLabel">📍 Añadir Nuevo Lugar</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    
+                    <form action="{{ route('lugares.store') }}" method="POST" class="m-0">
+                        @csrf
+                        <div class="modal-body p-4">
+                            <p class="text-muted small mb-4">Introduce el nombre del municipio o zona para que los usuarios puedan asociar sus rutas a este nuevo lugar.</p>
+                            
+                            <div class="mb-2">
+                                <label for="lugar" class="form-label fw-bold" style="color: var(--verde-principal);">Nombre del lugar</label>
+                                <input type="text" class="form-control" id="lugar" name="lugar" placeholder="Ej. Parque Natural, Lanjarón..." style="border: 1px solid #ddd; padding: 0.75rem; border-radius: 8px;" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer border-0 p-4 pt-0">
+                            <button type="button" class="btn btn-outline-secondary px-4" data-bs-dismiss="modal" style="border-radius: 8px; font-weight: 600;">Cancelar</button>
+                            <button type="submit" class="btn btn-create btn-submit px-4" style="border-radius: 8px;">Guardar Lugar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    @endif
 @endsection

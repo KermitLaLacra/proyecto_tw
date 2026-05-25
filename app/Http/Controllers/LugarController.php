@@ -40,7 +40,7 @@ class LugarController extends Controller
             'lugar' => $request->lugar,
         ]);
 
-        return redirect('/lugares');
+        return redirect('/dashboard');
     }
 
     /**
@@ -73,7 +73,9 @@ class LugarController extends Controller
 
         $lugar->lugar = $request->lugar;
 
-        return redirect('/lugares');
+        $lugar->save();
+
+        return redirect('/dashboard');
     }
 
     /**
@@ -85,6 +87,6 @@ class LugarController extends Controller
 
         $lugar->delete();
 
-        return redirect('/lugares');
+        return redirect('/dashboard');
     }
 }
