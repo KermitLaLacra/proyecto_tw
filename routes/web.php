@@ -53,4 +53,8 @@ Route::post('/contacto/enviar', [ContactoController::class, 'enviar'])->name('co
 
 Route::resource('lugares', LugarController::class)->middleware('auth');
 
+Route::post('/valoraciones', [ValoracionController::class, 'store'])
+    ->middleware('auth')
+    ->name('valoraciones.store');
+
 require __DIR__.'/auth.php';

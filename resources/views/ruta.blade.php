@@ -174,25 +174,62 @@
             <div class="ruta-valoraciones">
                 <h3 class="valoraciones-titulo">Valoraciones</h3>
 
+                @auth
+                    <div class="card mb-5 border-0 shadow-sm" style="border-radius: 8px;">
+                        <div class="card-body p-4">
+                            <h5 class="fw-bold mb-3" style="color: var(--verde-principal);">¿Qué te pareció esta ruta?</h5>
+                            <form action="{{ route('valoraciones.store') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="ruta_id" value="{{ $ruta->id }}">
+                                
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label for="puntuacion" class="form-label fw-bold">Tu Puntuación</label>
+                                        <select class="form-select" id="puntuacion" name="puntuacion" required>
+                                            <option value="" disabled selected>Selecciona...</option>
+                                            <option value="5">⭐⭐⭐⭐⭐ (5/5 - Excelente)</option>
+                                            <option value="4">⭐⭐⭐⭐ (4/5 - Muy buena)</option>
+                                            <option value="3">⭐⭐⭐ (3/5 - Buena)</option>
+                                            <option value="2">⭐⭐ (2/5 - Regular)</option>
+                                            <option value="1">⭐ (1/5 - Mala)</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="valoracion" class="form-label fw-bold">Tu Opinión</label>
+                                    <textarea class="form-control" id="valoracion" name="valoracion" rows="3" placeholder="Escribe aquí tu experiencia..." required style="resize: none;"></textarea>
+                                </div>
+
+                                <button type="submit" class="btn btn-create btn-submit px-4">Publicar valoración</button>
+                            </form>
+                        </div>
+                    </div>
+                @else
+                    <div class="alert border-0 shadow-sm mb-5" style="background-color: #fff9e6; border-left: 4px solid var(--amarillo-detalle) !important;">
+                        <p class="mb-0 text-dark">Para poder dejar una valoración debes <a href="{{ route('login') }}" class="fw-bold text-dark">iniciar sesión</a>.</p>
+                    </div>
+                @endauth
+
                 @if($ruta->valoraciones && $ruta->valoraciones->count() > 0)
                     <div class="valoraciones-lista">
-                        @foreach($ruta->valoraciones as $valoracion)
-                            <div class="valoracion-item">
+                        @foreach($ruta->valoraciones as $item)
+                            <div class="valoracion-item mb-3">
                                 <div class="valoracion-header">
                                     <div class="valoracion-puntuacion">
                                         @for($i = 1; $i <= 5; $i++)
-                                            <span class="estrella {{ $i <= $valoracion->puntuacion ? 'llena' : 'vacia' }}">★</span>
+                                            <span class="estrella {{ $i <= $item->puntuacion ? 'llena' : 'vacia' }}">★</span>
                                         @endfor
                                     </div>
-                                    <span class="valoracion-usuario">{{ $valoracion->usuario ?? 'Anónimo' }}</span>
+                                    <span class="valoracion-usuario">{{ $item->user->name ?? 'Usuario Anónimo' }}</span>
                                 </div>
-                                <p class="valoracion-comentario">{{ $valoracion->comentario }}</p>
+                                <p class="valoracion-comentario">{{ $item->valoracion }}</p>
                             </div>
                         @endforeach
                     </div>
                 @else
-                    <div class="alert alert-info" role="alert">
-                        <p>Aún no hay valoraciones para esta ruta. ¡Sé el primero en valorarla!</p>
+                    <div class="alert alert-info border-0 shadow-sm" role="alert" style="background-color: #f8f9fa; border-left: 4px solid var(--verde-principal) !important;">
+                        <p class="mb-0 text-muted">Aún no hay valoraciones para esta ruta. ¡Anímate y sé el primero en valorarla!</p>
                     </div>
                 @endif
             </div>

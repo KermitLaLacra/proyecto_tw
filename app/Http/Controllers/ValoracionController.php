@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Valoracion;
 
 class ValoracionController extends Controller
 {
@@ -29,19 +30,22 @@ class ValoracionController extends Controller
      */
     public function store(Request $request)
     {
+        // Añadimos el required para ruta_id por seguridad
         $request->validate([
-            'puntuacion' => 'required|integer|min:0|max:5',
-            'valoracion' => 'nullable|string|max:1000',
+            'ruta_id' => 'required|exists:rutas,id',
+            'puntuacion' => 'required|integer|min:1|max:5',
+            'valoracion' => 'required|string|max:1000',
         ]);
 
-        $valoracion = Valoracion::create([
+        Valoracion::create([
             'ruta_id' => $request->ruta_id,
             'user_id' => auth()->id(),
             'puntuacion' => $request->puntuacion,
             'valoracion' => $request->valoracion,
         ]);
 
-        return redirect('/valoracion');
+        // En lugar de redirigir a un listado genérico, te devuelve a la misma ruta que estabas viendo
+        return back()->with('status', '¡Gracias por compartir tu opinión sobre la ruta!');
     }
 
     /**
