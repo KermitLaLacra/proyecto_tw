@@ -194,10 +194,43 @@
                         </p>
                     </div>
 
-                    <div class="card-footer bg-white">
-                        <a href="{{ route('rutas.show', $ruta->id) }}" class="btn btn-primary w-100">
-                            Ver detalles
-                        </a>
+                    <div class="card-footer bg-white {{ auth()->check() && auth()->user()->hasRole('administrador') ? 'border-0 pb-4' : '' }}">
+                        
+                        @if(auth()->check() && auth()->user()->hasRole('administrador'))
+                            <div class="d-flex gap-2">
+                                <a href="{{ route('rutas.show', $ruta->id) }}" class="btn btn-outline-secondary w-100 fw-bold">
+                                    Ver
+                                </a>
+                                <a href="{{ route('rutas.edit', $ruta->id) }}" class="btn btn-create w-100 text-white" style="background-color: var(--verde-principal);">
+                                    Editar
+                                </a>
+                            </div>
+
+                            <div class="mt-2">
+                                <form action="{{ route('rutas.oficial.toggle', $ruta->id) }}" method="POST" class="m-0">
+                                    @csrf
+                                    <button type="submit" class="btn btn-outline-primary w-100 fw-bold">
+                                        {{ $ruta->es_oficial ? 'Quitar oficial' : 'Marcar oficial' }}
+                                    </button>
+                                </form>
+                            </div>
+
+                            <div class="mt-2">
+                                <form action="{{ route('rutas.destroy', $ruta->id) }}" method="POST" class="m-0" onsubmit="return confirm('¿Estás totalmente seguro de que quieres borrar esta ruta? Esta acción no se puede deshacer.');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-outline-danger w-100 fw-bold">
+                                        Eliminar Ruta
+                                    </button>
+                                </form>
+                            </div>
+
+                        @else
+                            <a href="{{ route('rutas.show', $ruta->id) }}" class="btn btn-primary w-100">
+                                Ver detalles
+                            </a>
+                        @endif
+
                     </div>
                 </div>
             </div>
