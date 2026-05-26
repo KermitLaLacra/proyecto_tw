@@ -2,9 +2,9 @@
 
 @section('contenido')
 <div class="container mt-5">
-    <div class="row align-items-center" style="min-height: 300px;">
+    <div class="row align-items-center hero-welcome">
         <div class="col-12 text-center">
-            <h1 class="display-3 fw-bold mb-4" style="color: #2d5a3d;">
+            <h1 class="display-3 fw-bold mb-4 titulo-welcome">
                 🥒 Ruta del Alioli
             </h1>
             <p class="lead text-muted mb-5">
@@ -28,7 +28,6 @@
                                     name="nombre" 
                                     placeholder="🔍 Buscar ruta por nombre..."
                                     value="{{ request('nombre') }}"
-                                    style="border: none; font-size: 1.1rem;"
                                 >
                             </div>
                         </div>
@@ -99,7 +98,7 @@
                                     <div class="col-12 col-sm-12 col-md-2 col-lg-2 pb-1">
                                         <div class="form-check form-switch fs-6">
                                             <input class="form-check-input" type="checkbox" role="switch" id="oficial_welcome" name="oficial" value="1" {{ request('oficial') ? 'checked' : '' }}>
-                                            <label class="form-check-label fw-bold" for="oficial_welcome" style="color: var(--verde-principal);">Solo Oficiales 🏅</label>
+                                            <label class="form-check-label fw-bold text-success" for="oficial_welcome">Solo Oficiales 🏅</label>
                                         </div>
                                     </div>
 
@@ -129,53 +128,4 @@
         </div>
     </div>
 </div>
-
-<style>
-    .display-3 {
-        letter-spacing: -0.02em;
-        text-shadow: 2px 2px 4px rgba(45, 90, 61, 0.1);
-    }
-
-    .card-search-bar {
-        border: 2px solid #2d5a3d;
-        border-radius: 50px;
-        overflow: hidden;
-    }
-
-    .search-input {
-        padding: 15px 25px !important;
-    }
-
-    .card-search-input:focus {
-        border-color: #2d5a3d;
-        box-shadow: 0 0 0 0.2rem rgba(45, 90, 61, 0.25);
-    }
-
-    .card-filters {
-        border: 1px solid #e9ecef;
-        background-color: #f8f9fa;
-    }
-
-    /* Reseteo de estilos para que herede los de app.css */
-    .form-label {
-        color: var(--verde-principal);
-        font-weight: 600;
-        font-size: 0.9rem;
-    }
-
-    .form-control, .form-select {
-        border-color: #ddd;
-        background-color: white;
-    }
-
-    .form-control:focus, .form-select:focus {
-        border-color: var(--verde-principal);
-        box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.25);
-    }
-
-    .form-check-input:checked {
-        background-color: var(--verde-principal);
-        border-color: var(--verde-principal);
-    }
-</style>
 @endsection

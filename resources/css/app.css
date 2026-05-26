@@ -870,3 +870,21 @@
         font-size: 1.25rem;
     }
 }
+
+/* ========== ESTILOS GLOBALES DE FORMULARIOS ========== */
+/* Hacer que los interruptores (switches) y checkboxes se vuelvan verdes al marcarlos */
+.form-check-input:checked {
+    background-color: var(--verde-principal);
+    border-color: var(--verde-principal);
+}
+
+/* ========== ESTILOS PARA LA VISTA WELCOME ========== */
+.hero-welcome {
+    min-height: 300px;
+}
+
+.titulo-welcome {
+    color: var(--verde-principal);
+    letter-spacing: -0.02em;
+    text-shadow: 2px 2px 4px rgba(46, 125, 50, 0.15);
+}
