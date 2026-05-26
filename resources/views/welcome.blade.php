@@ -123,7 +123,7 @@
     <div class="row justify-content-center mb-5">
         <div class="col-12 text-center">
             <p class="text-muted small">
-                💡 <em>Completa los filtros que desees o haz clic en "Buscar Rutas" para ver todas las rutas disponibles</em>
+                <em>Completa los filtros que desees o haz clic en "Buscar Rutas" para ver todas las rutas disponibles</em>
             </p>
         </div>
     </div>
