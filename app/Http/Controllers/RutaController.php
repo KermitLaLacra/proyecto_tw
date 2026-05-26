@@ -145,30 +145,53 @@ class RutaController extends Controller
      * Muestra el formulario para editar una ruta existente.
      */
         public function edit(string $id)
-        {
-            $ruta = Ruta::find($id);
-            $tipos = Tipo::all();
-            $lugares = Lugar::all();
+    {
+        $ruta = Ruta::find($id);
+        $lugares = Lugar::all();
 
-            return view('rutas.edit', ['ruta' => $ruta, 'tipos' => $tipos, 'lugares' => $lugares]);
-        }
+        // Cambiamos 'rutas' por el nombre de tu vista de edición
+        return view('edit', ['ruta' => $ruta, 'lugares' => $lugares]); 
+    }
 
     /**
      * Actualiza el lugar en la base de datos.
      */
     public function update(Request $request, string $id)
     {
+        // 1. Validamos los campos igual que cuando creamos la ruta
+        $request->validate([
+            'nombre' => 'required',
+            'km' => 'required|numeric|min:0',
+            'desnivel' => 'required|integer|min:0',
+            'descripcion' => 'required',
+            'lugar_id' => 'required|exists:lugar,id',
+            'tipo_ruta' => 'required|in:turismo,senderismo',
+            'dificultad' => 'required|in:muy_facil,facil,intermedio,dificil,muy_dificil',
+            'imagen_principal' => 'nullable|image',
+        ]);
+
+        // 2. Buscamos la ruta en la base de datos
         $ruta = Ruta::find($id);
 
+        // 3. Actualizamos todos los textos y números
         $ruta->nombre = $request->nombre;
+        $ruta->lugar_id = $request->lugar_id;
+        $ruta->tipo_ruta = $request->tipo_ruta;
+        $ruta->dificultad = $request->dificultad;
         $ruta->km = $request->km;
+        $ruta->desnivel = $request->desnivel;
         $ruta->descripcion = $request->descripcion;
-        $ruta->imagen = $request->imagen;
+
+        // 4. Si el usuario ha subido una nueva imagen, la guardamos
+        if ($request->hasFile('imagen_principal')) {
+            $ruta->imagen = $request->file('imagen_principal')->store('rutas', 'public');
+        }
+
+        // 5. Guardamos en base de datos
         $ruta->save();
 
-        $ruta->tipos()->sync($request->tipos);
-
-        return redirect('/rutas');
+        // 6. Redirigimos al Dashboard en lugar del listado para que el usuario vea su cambio
+        return redirect('/dashboard')->with('status', '¡Ruta actualizada correctamente!');
     }
 
     /**
