@@ -58,6 +58,7 @@ class DatabaseSeeder extends Seeder
             ['lugar' => 'Guadix'],
             ['lugar' => 'Alhama de Granada'],
             ['lugar' => 'La Alpujarra'],
+            ['lugar' => 'Dúdar'],
         ];
 
         $lugaresCreados = collect($lugares)->map(fn($lugar) => Lugar::create($lugar));
@@ -104,6 +105,62 @@ class DatabaseSeeder extends Seeder
             'dificultad' => 'muy_facil',
             'lugar_id' => $lugaresCreados[2]->id,
         ], 'loja.avif');
+
+        $this->crearRutaConImagenes([
+            'nombre' => 'Silla del Moro',
+        ], [
+            'user_id' => $user3->id,
+            'km' => 13.52,
+            'desnivel' => 389,
+            'es_oficial' => false,
+            'descripcion' => 'Con salida en el aparcamiento del Generalife, nos dirigimos por la carretera hacia el Cerro del Sol, a nuestra derecha el Cementerio San José, muy pronto y en la primera curva se encuentra La Rauda (cementerio musulman).',
+            'imagen' => null,
+            'tipo_ruta' => 'turismo',
+            'dificultad' => 'muy_facil',
+            'lugar_id' => $lugaresCreados[0]->id,
+        ], 'Alhambra.jpg');
+
+        $this->crearRutaConImagenes([
+            'nombre' => 'Cerro de las Tres Cruces',
+        ], [
+            'user_id' => $user2->id,
+            'km' => 12.73,
+            'desnivel' => 517,
+            'es_oficial' => true,
+            'descripcion' => 'En la comarca de la Vega granadina, a medio camino entre la capital y Sierra Nevada, se encuentra el pueblo de Dúdar. Esta pequeña y pintoresca localidad es conocida por sus bellos paisajes.',
+            'imagen' => null,
+            'tipo_ruta' => 'senderismo',
+            'dificultad' => 'intermedio',
+            'lugar_id' => $lugaresCreados[6]->id,
+        ], 'ruta_9.jpg');
+
+        $this->crearRutaConImagenes([
+            'nombre' => 'Ruta del Termalismo',
+        ], [
+            'user_id' => $user2->id,
+            'km' => 8.64,
+            'desnivel' => 213,
+            'es_oficial' => true,
+            'descripcion' => 'Ruta por un bonito paisaje, los Tajos del río Alhama a su paso por la localidad de Alhama de Granada. Durante el recorrido se disfruta de los tajos desde abajo del río, y de unas vistas espectaculares de los mismos desde arriba.',
+            'imagen' => null,
+            'tipo_ruta' => 'senderismo',
+            'dificultad' => 'facil',
+            'lugar_id' => $lugaresCreados[4]->id,
+        ], 'ruta_7.jpg');
+
+        $this->crearRutaConImagenes([
+            'nombre' => 'Cerro del Toro',
+        ], [
+            'user_id' => $user3->id,
+            'km' => 11.94,
+            'desnivel' => 495,
+            'es_oficial' => false,
+            'descripcion' => 'Destaca por sus vistas panorámicas de la costa y las antiguas minas.',
+            'imagen' => null,
+            'tipo_ruta' => 'senderismo',
+            'dificultad' => 'dificil',
+            'lugar_id' => $lugaresCreados[1]->id,
+        ], 'ruta_4.jpg');
     }
 
     private function crearRutaConImagenes(array $busqueda, array $datos, ?string $imagenPrincipal = null, array $imagenesAdicionales = []): Ruta
