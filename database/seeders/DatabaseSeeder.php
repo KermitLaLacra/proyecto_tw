@@ -80,7 +80,7 @@ class DatabaseSeeder extends Seeder
         $this->crearRutaConImagenes([
             'nombre' => 'Senderismo Sierra Nevada',
         ], [
-            'user_id' => $user1->id,
+            'user_id' => $user2->id,
             'km' => 15.75,
             'desnivel' => 1200,
             'es_oficial' => true,
@@ -94,7 +94,7 @@ class DatabaseSeeder extends Seeder
         $this->crearRutaConImagenes([
             'nombre' => 'Paseo Loja',
         ], [
-            'user_id' => $user1->id,
+            'user_id' => $user3->id,
             'km' => 8.30,
             'desnivel' => 120,
             'es_oficial' => false,
