@@ -158,7 +158,6 @@ class RutaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // 1. Validamos los campos igual que cuando creamos la ruta
         $request->validate([
             'nombre' => 'required',
             'km' => 'required|numeric|min:0',
@@ -170,10 +169,8 @@ class RutaController extends Controller
             'imagen_principal' => 'nullable|image',
         ]);
 
-        // 2. Buscamos la ruta en la base de datos
         $ruta = Ruta::find($id);
 
-        // 3. Actualizamos todos los textos y números
         $ruta->nombre = $request->nombre;
         $ruta->lugar_id = $request->lugar_id;
         $ruta->tipo_ruta = $request->tipo_ruta;
@@ -182,15 +179,12 @@ class RutaController extends Controller
         $ruta->desnivel = $request->desnivel;
         $ruta->descripcion = $request->descripcion;
 
-        // 4. Si el usuario ha subido una nueva imagen, la guardamos
         if ($request->hasFile('imagen_principal')) {
             $ruta->imagen = $request->file('imagen_principal')->store('rutas', 'public');
         }
 
-        // 5. Guardamos en base de datos
         $ruta->save();
 
-        // 6. Redirigimos al Dashboard en lugar del listado para que el usuario vea su cambio
         return redirect('/dashboard')->with('status', '¡Ruta actualizada correctamente!');
     }
 
