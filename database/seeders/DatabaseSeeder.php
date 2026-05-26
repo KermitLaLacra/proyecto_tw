@@ -57,6 +57,7 @@ class DatabaseSeeder extends Seeder
             ['lugar' => 'Loja'],
             ['lugar' => 'Guadix'],
             ['lugar' => 'Alhama de Granada'],
+            ['lugar' => 'La Alpujarra'],
         ];
 
         $lugaresCreados = collect($lugares)->map(fn($lugar) => Lugar::create($lugar));
@@ -73,7 +74,7 @@ class DatabaseSeeder extends Seeder
             'imagen' => null,
             'tipo_ruta' => 'turismo',
             'dificultad' => 'intermedio',
-            'lugar_id' => $lugaresCreados[0]->id,
+            'lugar_id' => $lugaresCreados[5]->id,
         ], 'alpujarra.jpg');
 
         $this->crearRutaConImagenes([
@@ -87,17 +88,17 @@ class DatabaseSeeder extends Seeder
             'imagen' => null,
             'tipo_ruta' => 'senderismo',
             'dificultad' => 'dificil',
-            'lugar_id' => $lugaresCreados[1]->id,
+            'lugar_id' => $lugaresCreados[0]->id,
         ], 'sierra_nevada.jpg');
 
         $this->crearRutaConImagenes([
-            'nombre' => 'Paseo por la Costa Tropical',
+            'nombre' => 'Paseo Loja',
         ], [
             'user_id' => $user1->id,
             'km' => 8.30,
             'desnivel' => 120,
             'es_oficial' => false,
-            'descripcion' => 'Agradable paseo por la costa con playas y calas escondidas. Perfecto para familias.',
+            'descripcion' => 'Agradable paseo perfecto para familias.',
             'imagen' => null,
             'tipo_ruta' => 'turismo',
             'dificultad' => 'muy_facil',
