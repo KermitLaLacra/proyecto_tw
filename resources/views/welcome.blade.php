@@ -5,7 +5,7 @@
     <div class="row align-items-center hero-welcome">
         <div class="col-12 text-center">
             <h1 class="display-3 fw-bold mb-4 titulo-welcome">
-                🥒 Ruta del Alioli
+                Ruta del Alioli
             </h1>
             <p class="lead text-muted mb-5">
                 Descubre las mejores rutas para explorar nuestro territorio
@@ -98,7 +98,7 @@
                                     <div class="col-12 col-sm-12 col-md-2 col-lg-2 pb-1">
                                         <div class="form-check form-switch fs-6">
                                             <input class="form-check-input" type="checkbox" role="switch" id="oficial_welcome" name="oficial" value="1" {{ request('oficial') ? 'checked' : '' }}>
-                                            <label class="form-check-label fw-bold text-success" for="oficial_welcome">Solo Oficiales 🏅</label>
+                                            <label class="form-check-label fw-bold text-success" for="oficial_welcome">Solo Oficiales</label>
                                         </div>
                                     </div>
 
@@ -107,7 +107,7 @@
                                             🔍 Buscar Rutas
                                         </button>
                                         <a href="/" class="btn btn-outline-secondary btn-filter" title="Limpiar filtros">
-                                            🔄 Limpiar
+                                            Limpiar
                                         </a>
                                     </div>
 

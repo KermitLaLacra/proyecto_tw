@@ -87,7 +87,7 @@
                                 <div class="col-12 col-sm-12 col-md-2 col-lg-2 pb-1">
                                     <div class="form-check form-switch fs-6">
                                         <input class="form-check-input" type="checkbox" role="switch" id="oficial_rutas" name="oficial" value="1" {{ request('oficial') ? 'checked' : '' }}>
-                                        <label class="form-check-label fw-bold" for="oficial_rutas" style="color: var(--verde-principal);">Solo Oficiales 🏅</label>
+                                        <label class="form-check-label fw-bold" for="oficial_rutas" style="color: var(--verde-principal);">Solo Oficiales</label>
                                     </div>
                                 </div>
 
@@ -96,7 +96,7 @@
                                         🔍 Buscar
                                     </button>
                                     <a href="{{ route('rutas.index') }}" class="btn btn-outline-secondary btn-filter" title="Limpiar filtros">
-                                        🔄 Limpiar
+                                        Limpiar
                                     </a>
                                 </div>
                             </div>
